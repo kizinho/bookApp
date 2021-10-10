@@ -36,6 +36,8 @@ dependencies:
   font_awesome_flutter:
   get:
   get_it:
+  firebase_core:
+  firebase_auth:
 dev_dependencies:
   flutter_test:
     sdk: flutter

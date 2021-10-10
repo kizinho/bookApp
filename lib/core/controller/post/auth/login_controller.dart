@@ -1,3 +1,4 @@
+import 'package:bookapp/core/controller/post/auth/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,17 +11,17 @@ class LoginController extends GetxController {
   RxBool isLoading = false.obs;
   @override
   void onInit() async {
+    initializeFirebase();
     super.onInit();
   }
 
   @override
   void onClose() {
-    focusEmail.dispose();
-    focusPassword.dispose();
-    emailController.dispose();
-    passwordController.dispose();
+    emailController.clear();
+    passwordController.clear();
     super.onClose();
   }
+
   loginUser() {
     print(emailController.text);
   }

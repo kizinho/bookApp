@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -7,7 +8,9 @@ import 'core/routes/route_names.dart';
 import 'locator.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();;
+  //firebase messaging
+  await Firebase.initializeApp();
   final directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
   setupLocator();
