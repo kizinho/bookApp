@@ -1,10 +1,15 @@
 import 'dart:async';
 
 import 'package:bookapp/core/model/onboarding/onboarding.dart';
+import 'package:bookapp/service/api/authentication_api/authentication_api.dart';
+import 'package:bookapp/service/onboarding/onboarding_info_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../locator.dart';
+
 class OnboardingController extends GetxController {
+  var onboardApi = locator<AuthenticationApi>();
   List<SliderModel> mySLides = new List<SliderModel>.empty(growable: false);
   RxInt slideIndex = 0.obs;
   final pageController = PageController();
@@ -29,9 +34,8 @@ class OnboardingController extends GetxController {
         curve: Curves.easeIn,
       );
     });
-
+    onboarding();
     super.onInit();
-    // onboarding();
   }
 
   @override
@@ -41,16 +45,18 @@ class OnboardingController extends GetxController {
     super.onClose();
   }
 
-  // onboarding() async {
-  //   var onboardInfoCache = locator<OnboardInfoCache>();
-  //   await onboardInfoCache.getOnboardDataFromStorage();
-  //   if (onboardInfoCache.isOnboarding) {
-  //     Navigator.pushReplacementNamed(
-  //       context,
-  //       RouteNames.loginScreen,
-  //     );
-  //   }
-  // }
+  onboarding() async {
+    var onboardInfoCache = locator<OnboardInfoCache>();
+    await onboardInfoCache.getOnboardDataFromStorage();
+    if (onboardInfoCache.status != null) Get.offNamed("login");
+  }
+
+  setOnboardingSeen() async {
+    var result = await onboardApi.onboarding();
+    var onboardInfoCache = locator<OnboardInfoCache>();
+    await onboardInfoCache.cacheOnboardResponse(result);
+  }
+
   setTitle(newTitle) {
     title.value = newTitle;
     print(title.value.length);

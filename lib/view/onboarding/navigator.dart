@@ -36,7 +36,7 @@ class NavigatorItem extends StatelessWidget {
                             style: Theme.of(context).textTheme.caption,
                           ),
                           onTap: () {
-// model.setOnboardingSeen();
+                            onboarding.setOnboardingSeen();
                             Get.offNamed("login");
                           },
                         ),
@@ -51,7 +51,7 @@ class NavigatorItem extends StatelessWidget {
                             style: Theme.of(context).textTheme.caption,
                           ),
                           onTap: () {
-// model.setOnboardingSeen();
+                            onboarding.setOnboardingSeen();
                             Get.offNamed("login");
                           },
                         ),

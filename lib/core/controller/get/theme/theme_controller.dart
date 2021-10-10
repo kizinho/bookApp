@@ -1,4 +1,4 @@
-import 'package:bookapp/service/service/theme/theme_service.dart';
+import 'package:bookapp/service/theme/theme_service.dart';
 import 'package:bookapp/view/theme/theme_dark.dart';
 import 'package:bookapp/view/theme/theme_light.dart';
 import 'package:flutter/material.dart';

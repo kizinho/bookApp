@@ -110,8 +110,7 @@ class SlideTile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(12)),
                                 child: TextButton(
                                   onPressed: () {
-// model.setOnboardingSeen();
-// Navigator.pushReplacementNamed(
+                                    onboarding.setOnboardingSeen();
                                     Get.offNamed("login");
                                   },
                                   child: Text("START",

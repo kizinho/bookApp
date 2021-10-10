@@ -33,6 +33,7 @@ dependencies:
   hive: ^2.0.0
   google_fonts: ^2.1.0
   shared_preferences:
+  font_awesome_flutter:
   get:
   get_it:
 dev_dependencies:
@@ -55,6 +56,7 @@ flutter:
     - assets/images/onboarding/screen1.png
     - assets/images/onboarding/screen2.png
     - assets/images/onboarding/screen3.png
+    - assets/auth/auth.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
