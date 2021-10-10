@@ -91,7 +91,7 @@ class Login extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        submitButton(),
+                        submitButton(context),
                         SizedBox(
                           height: 20,
                         ),
@@ -119,8 +119,9 @@ class Login extends StatelessWidget {
                                       margin: EdgeInsets.only(left: 10),
                                       child: Text(
                                         'Sign up',
-                                        style:
-                                            Theme.of(context).textTheme.headline4,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline4,
                                       )),
                                   onTap: () => Get.offNamed("register"),
                                 ),
@@ -140,13 +141,22 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget submitButton() {
-    return GestureDetector(
+  Widget submitButton(context) {
+    return Obx(() => GestureDetector(
         onTap: () {
           if (login.loginFormKey.currentState!.validate()) {
-           login.loginUser();
+            login.loginUser();
           }
         },
-        child: login.isLoading.value ? Loader() : SubmitButtion(text: 'Login'));
+        child: login.isLoading.value
+            ? Container(
+                alignment: Alignment.center,
+                width: 250,
+                height: 52,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Theme.of(context).primaryColor.withOpacity(0.4)),
+                child: Loader())
+            : SubmitButtion(text: 'Login')));
   }
 }

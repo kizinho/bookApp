@@ -1,4 +1,7 @@
-import 'package:bookapp/core/controller/post/auth/auth.dart';
+import 'package:bookapp/core/controller/get/basic/navigator.dart';
+import 'package:bookapp/view/widget/snackbar/error.dart';
+import 'package:bookapp/view/widget/snackbar/success.dart';
+import 'package:bookapp/view/widget/snackbar/warning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,59 +29,35 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
-  registerUser() {
-    print(emailController.text);
-  }
-
-  register({
-    required String username,
-    required String email,
-    required String password,
-  }) async {
+  registerUser() async {
     User? user;
     try {
+      if (isLoading.value == true) {
+        return null;
+      }
+      isLoading.value = true;
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: emailController.text,
+        password: passwordController.text,
       );
       user = userCredential.user;
-      await user!.updateDisplayName(username);
+      await user!.updateDisplayName(usernameController.text);
       await user.reload();
       user = auth.currentUser;
+      snackBarSuccess('Success!', 'Registration success', true);
+      startTimer('books');
+      isLoading.value = false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        snackBarWarning('Error!', 'The password provided is too weak', false);
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        snackBarWarning('Error!', 'email already taken', false);
       }
+      isLoading.value = false;
     } catch (e) {
-      print(e);
+      snackBarError('Error!', '$e', false);
+      isLoading.value = false;
     }
-    return user;
-  }
-
-  signInUsingEmailPassword({
-    required String email,
-    required String password,
-    required BuildContext context,
-  }) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    User? user;
-
-    try {
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      user = userCredential.user;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided.');
-      }
-    }
-
     return user;
   }
 }

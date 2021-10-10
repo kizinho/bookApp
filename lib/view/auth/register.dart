@@ -56,7 +56,7 @@ class Register extends StatelessWidget {
                             ],
                             icon: Icons.person,
                             hintText: 'Username',
-                            controller: register.emailController,
+                            controller: register.usernameController,
                             validator: (value) {
                               if (value == null) {
                                 return 'Username can not be empty';
@@ -67,7 +67,7 @@ class Register extends StatelessWidget {
                             },
                             onFieldSubmitted: (v) {
                               FocusScope.of(context)
-                                  .requestFocus(register.focusPassword);
+                                  .requestFocus(register.focusEmail);
                             },
                           ),
                         ),
@@ -78,6 +78,7 @@ class Register extends StatelessWidget {
                           width: 250,
                           child: InputForms(
                             icon: Icons.email,
+                            focusNode: register.focusEmail,
                             hintText: 'E-mail',
                             controller: register.emailController,
                             validator: (value) {
@@ -120,7 +121,7 @@ class Register extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        submitButton(),
+                        submitButton(context),
                         SizedBox(
                           height: 20,
                         ),
@@ -170,15 +171,22 @@ class Register extends StatelessWidget {
     );
   }
 
-  Widget submitButton() {
-    return GestureDetector(
+  Widget submitButton(context) {
+    return Obx(() => GestureDetector(
         onTap: () {
           if (register.registerFormKey.currentState!.validate()) {
             register.registerUser();
           }
         },
         child: register.isLoading.value
-            ? Loader()
-            : SubmitButtion(text: 'register'));
+            ? Container(
+                alignment: Alignment.center,
+                width: 250,
+                height: 52,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Theme.of(context).primaryColor.withOpacity(0.4)),
+                child: Loader())
+            : SubmitButtion(text: 'register')));
   }
 }
