@@ -7,12 +7,16 @@ import 'package:bookapp/view/widget/loader/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 final RegisterController register = Get.put(RegisterController());
-
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +29,7 @@ class Register extends StatelessWidget {
                   padding: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height * 0.09),
                   child: Form(
-                    key: register.registerFormKey,
+                    key: registerFormKey,
                     child: Column(
                       children: [
                         Center(
@@ -111,7 +115,7 @@ class Register extends StatelessWidget {
                                   : null;
                             },
                             onFieldSubmitted: (v) {
-                              if (register.registerFormKey.currentState!
+                              if (registerFormKey.currentState!
                                   .validate()) {
                                 register.registerUser();
                               }
@@ -174,7 +178,7 @@ class Register extends StatelessWidget {
   Widget submitButton(context) {
     return Obx(() => GestureDetector(
         onTap: () {
-          if (register.registerFormKey.currentState!.validate()) {
+          if (registerFormKey.currentState!.validate()) {
             register.registerUser();
           }
         },

@@ -2,7 +2,7 @@ import 'package:bookapp/core/controller/get/onboarding_controller/onboarding_con
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-final onboarding = Get.put(OnboardingController());
+final onboarding = Get.find<OnboardingController>();
 
 class NavigatorItem extends StatelessWidget {
   const NavigatorItem({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class NavigatorItem extends StatelessWidget {
                           ),
                           onTap: () {
                             onboarding.setOnboardingSeen();
-                            Get.offNamed("login");
+                            Get.offNamed("books");
                           },
                         ),
                       ],
@@ -52,7 +52,7 @@ class NavigatorItem extends StatelessWidget {
                           ),
                           onTap: () {
                             onboarding.setOnboardingSeen();
-                            Get.offNamed("login");
+                            Get.offNamed("books");
                           },
                         ),
                       ],

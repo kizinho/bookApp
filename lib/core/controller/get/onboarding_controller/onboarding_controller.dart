@@ -20,6 +20,7 @@ class OnboardingController extends GetxController {
 
   @override
   onInit() {
+    onboarding();
     mySLides = getSlides();
     slideTimer = Timer.periodic(Duration(seconds: 10), (Timer timer) {
       if (slideIndex.value < 2) {
@@ -27,14 +28,12 @@ class OnboardingController extends GetxController {
       } else {
         slideIndex.value = 0;
       }
-
       pageController.animateToPage(
         slideIndex.value,
         duration: Duration(milliseconds: 350),
         curve: Curves.easeIn,
       );
     });
-    onboarding();
     super.onInit();
   }
 
@@ -48,7 +47,9 @@ class OnboardingController extends GetxController {
   onboarding() async {
     var onboardInfoCache = locator<OnboardInfoCache>();
     await onboardInfoCache.getOnboardDataFromStorage();
-    if (onboardInfoCache.status != null) Get.offNamed("login");
+    if (onboardInfoCache.status != null) {
+      Get.offAllNamed('books');
+    }
   }
 
   setOnboardingSeen() async {

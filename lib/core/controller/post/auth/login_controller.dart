@@ -1,5 +1,4 @@
 import 'package:bookapp/core/controller/get/basic/navigator.dart';
-import 'package:bookapp/core/controller/post/auth/auth.dart';
 import 'package:bookapp/view/widget/snackbar/error.dart';
 import 'package:bookapp/view/widget/snackbar/success.dart';
 import 'package:bookapp/view/widget/snackbar/warning.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  final loginFormKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final FocusNode focusPassword = new FocusNode();
@@ -16,7 +14,7 @@ class LoginController extends GetxController {
   RxBool isLoading = false.obs;
   @override
   void onInit() async {
-    initializeFirebase();
+    //initializeFirebase();
     super.onInit();
   }
 

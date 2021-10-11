@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'bindings/binding.dart';
 import 'core/controller/get/theme/theme_controller.dart';
 import 'core/routes/route_names.dart';
 import 'locator.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();;
+  WidgetsFlutterBinding.ensureInitialized();
   //firebase messaging
   await Firebase.initializeApp();
   final directory = await getApplicationDocumentsDirectory();
@@ -24,6 +25,7 @@ class MaterialAPP extends StatelessWidget {
     Get.put(ThemeController()).getValuesFromThemeService();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      initialBinding: BindingControllers(),
       title: 'BOOKS_APP',
       unknownRoute: RouteNames.unknown.first,
       initialRoute: RouteNames.routes.first.name,

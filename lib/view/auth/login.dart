@@ -8,10 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 final LoginController login = Get.put(LoginController());
-
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  GlobalKey<FormState> loginFormKey  = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +29,7 @@ class Login extends StatelessWidget {
                   padding: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height * 0.09),
                   child: Form(
-                    key: login.loginFormKey,
+                    key: loginFormKey ,
                     child: Column(
                       children: [
                         Center(
@@ -82,7 +87,7 @@ class Login extends StatelessWidget {
                                   : null;
                             },
                             onFieldSubmitted: (v) {
-                              if (login.loginFormKey.currentState!.validate()) {
+                              if (loginFormKey .currentState!.validate()) {
                                 login.loginUser();
                               }
                             },
@@ -144,7 +149,7 @@ class Login extends StatelessWidget {
   Widget submitButton(context) {
     return Obx(() => GestureDetector(
         onTap: () {
-          if (login.loginFormKey.currentState!.validate()) {
+          if (loginFormKey .currentState!.validate()) {
             login.loginUser();
           }
         },

@@ -111,7 +111,7 @@ class SlideTile extends StatelessWidget {
                                 child: TextButton(
                                   onPressed: () {
                                     onboarding.setOnboardingSeen();
-                                    Get.offNamed("login");
+                                    Get.offNamed("books");
                                   },
                                   child: Text("START",
                                       style: Theme.of(context)

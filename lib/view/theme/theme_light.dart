@@ -5,7 +5,7 @@ ThemeData appThemeLight = ThemeData(
   appBarTheme: AppBarTheme(
     elevation: 0,
     color: Colors.white,
-    iconTheme: IconThemeData(color: Colors.black),
+    iconTheme: IconThemeData(color: Colors.black.withOpacity(0.6)),
   ),
   toggleableActiveColor: Colors.redAccent.shade700,
   //app  background color
@@ -34,7 +34,7 @@ ThemeData appThemeLight = ThemeData(
 
     headline6: GoogleFonts.caudex(fontSize: 12, color: Colors.black54),
 
-    subtitle1: GoogleFonts.caudex(fontSize: 15, color: Colors.black),
+    subtitle1: GoogleFonts.caudex(fontSize: 12, color: Colors.black),
     subtitle2: GoogleFonts.caudex(fontSize: 15, color: Colors.tealAccent.shade700),
 
     bodyText1: GoogleFonts.caudex(fontSize: 12, color: Colors.black87),
