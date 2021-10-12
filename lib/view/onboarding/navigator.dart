@@ -37,7 +37,7 @@ class NavigatorItem extends StatelessWidget {
                           ),
                           onTap: () {
                             onboarding.setOnboardingSeen();
-                            Get.offNamed("books");
+                            Get.offNamed("/books");
                           },
                         ),
                       ],
@@ -52,7 +52,7 @@ class NavigatorItem extends StatelessWidget {
                           ),
                           onTap: () {
                             onboarding.setOnboardingSeen();
-                            Get.offNamed("books");
+                            Get.offNamed("/books");
                           },
                         ),
                       ],

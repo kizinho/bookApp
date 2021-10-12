@@ -1,11 +1,13 @@
+import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
 import 'package:bookapp/core/controller/get/basic/navigator.dart';
+import 'package:bookapp/service/api/api_utils/api_routes.dart';
 import 'package:bookapp/view/widget/snackbar/error.dart';
 import 'package:bookapp/view/widget/snackbar/success.dart';
 import 'package:bookapp/view/widget/snackbar/warning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+final authUser = Get.find<AuthController>();
 class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -38,6 +40,14 @@ class LoginController extends GetxController {
         password: passwordController.text,
       );
       user = userCredential.user;
+      if (user!= null) {
+        authUser.isAuthenticated.value = true;
+        authUser.username.value = user.displayName!;
+        if (user.photoURL != null)
+          authUser.photo.value = user.photoURL!;
+        else
+          authUser.photo.value = ApiRoutes.avatar;
+      }
       snackBarSuccess('Success!', 'Logging in please wait', true);
       startTimer('books');
       isLoading.value = false;

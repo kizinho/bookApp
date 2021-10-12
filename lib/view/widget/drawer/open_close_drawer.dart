@@ -38,6 +38,7 @@ headerNav(title, context) {
           actions: [
             PopupMenuButton(
               child: Container(
+                margin: EdgeInsets.only(top: 6),
                 width: 50,
                 height: 50,
                 child: CircleAvatar(

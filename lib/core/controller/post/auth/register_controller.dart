@@ -1,11 +1,13 @@
+import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
 import 'package:bookapp/core/controller/get/basic/navigator.dart';
+import 'package:bookapp/service/api/api_utils/api_routes.dart';
 import 'package:bookapp/view/widget/snackbar/error.dart';
 import 'package:bookapp/view/widget/snackbar/success.dart';
 import 'package:bookapp/view/widget/snackbar/warning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+final authUser = Get.find<AuthController>();
 class RegisterController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -43,8 +45,17 @@ class RegisterController extends GetxController {
       await user!.updateDisplayName(usernameController.text);
       await user.reload();
       user = auth.currentUser;
+      if (user != null) {
+        authUser.isAuthenticated.value = true;
+        authUser.username.value = user.displayName!;
+        if (user.photoURL != null)
+          authUser.photo.value = user.photoURL!;
+        else
+          authUser.photo.value = ApiRoutes.avatar;
+
+      }
       snackBarSuccess('Success!', 'Registration success', true);
-      startTimer('books');
+      startTimer('/books');
       isLoading.value = false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

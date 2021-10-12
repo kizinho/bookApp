@@ -15,7 +15,7 @@ ThemeData appThemeLight = ThemeData(
   // //background bar
   unselectedWidgetColor: Colors.white,
   //inactive
-  disabledColor: Colors.black.withOpacity(0.5),
+  disabledColor: Colors.black.withOpacity(0.4),
   textTheme: TextTheme(
     //app welcome text
     headline1: GoogleFonts.caudex(
@@ -35,7 +35,7 @@ ThemeData appThemeLight = ThemeData(
     headline6: GoogleFonts.caudex(fontSize: 12, color: Colors.black54),
 
     subtitle1: GoogleFonts.caudex(fontSize: 12, color: Colors.black),
-    subtitle2: GoogleFonts.caudex(fontSize: 15, color: Colors.tealAccent.shade700),
+    subtitle2: GoogleFonts.caudex(fontSize: 16, color: Colors.black.withOpacity(0.8), fontWeight: FontWeight.bold),
 
     bodyText1: GoogleFonts.caudex(fontSize: 12, color: Colors.black87),
     bodyText2: GoogleFonts.caudex(
@@ -46,16 +46,15 @@ ThemeData appThemeLight = ThemeData(
     caption: GoogleFonts.caudex(
         fontSize: 12, color: Colors.black),
     overline: GoogleFonts.caudex(
-        fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold),
+        fontSize: 12, color:  Colors.black.withOpacity(0.4)),
   ),
   indicatorColor: Colors.grey,
-  //app button create account color
   canvasColor: Colors.white,
   cardColor: Colors.white,
   focusColor: Colors.teal.shade200,
-  shadowColor: Colors.white,
+  shadowColor: Colors.black12.withOpacity(0.04),
   hintColor: Colors.grey.withOpacity(0.15),
   bottomAppBarColor: Colors.grey.withOpacity(0.4),
-  highlightColor: Colors.white,
+  highlightColor: Colors.black,
   primaryColorDark: Colors.black.withOpacity(0.5),
 );
