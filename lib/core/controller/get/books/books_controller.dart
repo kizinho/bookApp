@@ -1,16 +1,40 @@
+import 'package:bookapp/core/model/user/books/booksDataModel/books_data.dart';
+import 'package:bookapp/service/api/api_utils/network_exceptions.dart';
+import 'package:bookapp/service/api/books_api/books_api.dart';
+import 'package:bookapp/view/widget/snackbar/error.dart';
+import 'package:bookapp/view/widget/snackbar/warning.dart';
 import 'package:get/get.dart';
 
+import '../../../../locator.dart';
+
 class BooksController extends GetxController {
+  //API
+  var bookApi = locator<BooksApi>();
   RxBool status = false.obs;
   RxList name = [].obs;
+  RxList<Item>? itemData = <Item>[].obs;
   RxList selectedTab = [].obs;
   RxInt query = 0.obs;
+  final booksData = Rxn<BooksData>();
+  RxInt startIndex = 0.obs;
+  final maxResults = 40;
+  final list = new List<int>.generate(15, (i) => i + 1);
+  final tab = new List<int>.generate(25, (i) => i + 1);
+  RxBool bookRefreshing = false.obs;
   @override
   void onInit() {
     myList();
     selectedTab.value = ['Latest'];
-    loadBookTabs();
+    getBookTab();
+    getBookRelevance();
     super.onInit();
+  }
+
+  Future<void> bookRefresh(value) {
+    startIndex.value = value;
+    getBookTab();
+    getBookRelevance();
+    return Future(itemData!);
   }
 
   final listsFinal = [
@@ -32,4 +56,75 @@ class BooksController extends GetxController {
   loadBookTabs() {
     print('this is what we use find tab at ${query.value}');
   }
+
+  getBookRelevance() async {
+    try {
+      BooksData result = await bookApi.getRelevanceBook();
+      booksData.value = result;
+      return result;
+    } on NetworkException {
+      snackBarWarning(
+          'No Internet!', 'Please check your internet Connection', false);
+    } catch (e) {
+      snackBarError('An Error Occured!', '$e', false);
+    }
+  }
+
+  getBookTab() async {
+    try {
+      if (query.value == 0) {
+        BooksData latestResult =
+            await bookApi.getLatestBook(startIndex.value, maxResults);
+        itemData!.value = latestResult.items!;
+        startIndex.value = startIndex.value + 1;
+        return latestResult;
+      } else {
+        print('new');
+        // BooksData favoriteResult = await bookApi.getRelevanceBook();
+        itemData!.value = [];
+        return null;
+      }
+    } on NetworkException {
+      snackBarWarning(
+          'No Internet!', 'Please check your internet Connection', false);
+    } catch (e) {
+      snackBarError('An Error Occured!', '$e', false);
+    }
+  }
+
+  getBookTabLoadMore() async {
+    print('.. starting from ${startIndex.value} and ends to $maxResults ');
+    if (bookRefreshing.value) {
+      print('more data is still fetching');
+      return null;
+    }
+    if (startIndex.value == 0) {
+      print('still on the first page');
+      return null;
+    }
+    try {
+      bookRefreshing.value = true;
+      if (query.value == 0) {
+        BooksData latestResult =
+            await bookApi.getLatestBook(startIndex.value, maxResults);
+        itemData!.addAll(latestResult.items!);
+        bookRefreshing.value = false;
+        startIndex.value = startIndex.value + 1;
+        return latestResult;
+      } else {
+        // BooksData favoriteResult = await bookApi.getRelevanceBook();
+        itemData!.value = [];
+        bookRefreshing.value = false;
+        return null;
+      }
+    } on NetworkException {
+      bookRefreshing.value = false;
+      snackBarWarning(
+          'No Internet!', 'Please check your internet Connection', false);
+    } catch (e) {
+      bookRefreshing.value = false;
+      snackBarError('An Error Occured!', '$e', false);
+    }
+  }
+
 }

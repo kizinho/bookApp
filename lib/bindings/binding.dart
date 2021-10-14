@@ -1,4 +1,5 @@
 import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
+import 'package:bookapp/core/controller/get/books/books_controller.dart';
 import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
 import 'package:bookapp/core/controller/get/onboarding_controller/onboarding_controller.dart';
 import 'package:bookapp/core/controller/get/user/user_controller.dart';
@@ -11,5 +12,6 @@ class BindingControllers implements Bindings {
     Get.put<DrawerAppController>(DrawerAppController(), permanent: true);
     Get.lazyPut(() => (UserController()));
     Get.lazyPut(() => (OnboardingController()));
+    Get.lazyPut(() => (BooksController()));
   }
 }

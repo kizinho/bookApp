@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class AppException implements Exception {
   final _message;
   final _prefix;
@@ -7,22 +5,7 @@ class AppException implements Exception {
   AppException([this._message, this._prefix]);
 
   String toString() {
-    Map<String, dynamic> res = Map<String, dynamic>.from(json.decode(_message));
-    if (res["error"] == null) {
-      return "$_prefix$_message";
-    }
-    var errorMessage = '';
-    if (res["error"] == 'Unauthorised') {
-      errorMessage = res["error"];
-      return "$errorMessage";
-    }
-    // Map<String, dynamic>.from(res["error"]).values.first.first;
-
-    for (String key in res['error'].keys) {
-      errorMessage += "\n${res['error'][key]?.join(',')}";
-    }
-
-    return "$errorMessage";
+    return "$_prefix$_message";
   }
 }
 
