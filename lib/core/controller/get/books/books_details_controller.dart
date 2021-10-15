@@ -70,6 +70,7 @@ class BooksDetailsController extends GetxController {
       'createdAt': DateTime.now()
     }).then((value) {
       favorite.value = true;
+      Get.find<BooksController>().getBookTab();
       snackBarSuccess('success', 'favorite added', false);
     }).catchError((error) {
       snackBarError('error', '$error', false);

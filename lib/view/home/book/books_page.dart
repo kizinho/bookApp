@@ -29,6 +29,7 @@ class BookPage extends StatelessWidget {
         strokeWidth: 5,
         child: NotificationListener<ScrollNotification>(
           onNotification: (ScrollNotification scrollInfo) {
+            if(books.itemData!.length >=40 || books.itemDataFavorite!.length >= 40)
             if (scrollInfo.metrics.pixels ==
                 scrollInfo.metrics.maxScrollExtent) {
               books.getBookTabLoadMore();

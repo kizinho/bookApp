@@ -96,6 +96,9 @@ class BooksController extends GetxController {
             itemDataFavorite!
                 .add(FavouriteModel.fromDocumentSnapshot(doc: result));
           });
+          if(itemDataFavorite!.isEmpty){
+            snackBarWarning('issues', 'you have not added books to your favorite', false);
+          }
           return itemDataFavorite;
         });
       }

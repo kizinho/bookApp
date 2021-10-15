@@ -91,7 +91,6 @@ class Tabs extends StatelessWidget {
 class TabDataList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(books.itemDataFavorite!.length);
     return Obx(() => Column(
           children: [
             SizedBox(
@@ -117,7 +116,8 @@ class TabDataList extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            Loader(),
+            if (books.isFavourite.value == false) Loader(),
+            if (books.itemDataFavorite!.length >= 40) Loader(),
             SizedBox(
               height: 20,
             ),
