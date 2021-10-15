@@ -1,8 +1,11 @@
+import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
 import 'package:bookapp/core/model/user/books/booksDataModel/books_data.dart';
+import 'package:bookapp/core/model/user/books/booksDataModel/books_favourite.dart';
 import 'package:bookapp/service/api/api_utils/network_exceptions.dart';
 import 'package:bookapp/service/api/books_api/books_api.dart';
 import 'package:bookapp/view/widget/snackbar/error.dart';
 import 'package:bookapp/view/widget/snackbar/warning.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../../../../locator.dart';
@@ -13,6 +16,7 @@ class BooksController extends GetxController {
   RxBool status = false.obs;
   RxList name = [].obs;
   RxList<Item>? itemData = <Item>[].obs;
+  RxList<FavouriteModel>? itemDataFavorite = <FavouriteModel>[].obs;
   RxList selectedTab = [].obs;
   RxInt query = 0.obs;
   final booksData = Rxn<BooksData>();
@@ -21,6 +25,7 @@ class BooksController extends GetxController {
   final list = new List<int>.generate(15, (i) => i + 1);
   final tab = new List<int>.generate(25, (i) => i + 1);
   RxBool bookRefreshing = false.obs;
+  RxBool isFavourite = false.obs;
   @override
   void onInit() {
     myList();
@@ -73,16 +78,26 @@ class BooksController extends GetxController {
   getBookTab() async {
     try {
       if (query.value == 0) {
+        isFavourite.value = false;
         BooksData latestResult =
             await bookApi.getLatestBook(startIndex.value, maxResults);
         itemData!.value = latestResult.items!;
         startIndex.value = startIndex.value + 1;
         return latestResult;
       } else {
-        print('new');
-        // BooksData favoriteResult = await bookApi.getRelevanceBook();
-        itemData!.value = [];
-        return null;
+        isFavourite.value = true;
+        itemDataFavorite!.value =[];
+        FirebaseFirestore.instance
+            .collection('favorites')
+            .where('userId', isEqualTo: Get.find<AuthController>().userId.value)
+            .get()
+            .then((querySnapshot) {
+          querySnapshot.docs.forEach((result) {
+            itemDataFavorite!
+                .add(FavouriteModel.fromDocumentSnapshot(doc: result));
+          });
+          return itemDataFavorite;
+        });
       }
     } on NetworkException {
       snackBarWarning(
@@ -93,7 +108,7 @@ class BooksController extends GetxController {
   }
 
   getBookTabLoadMore() async {
-    print('.. starting from ${startIndex.value} and ends to $maxResults ');
+    // print('.. starting from ${startIndex.value} and ends to $maxResults ');
     if (bookRefreshing.value) {
       print('more data is still fetching');
       return null;
@@ -105,6 +120,7 @@ class BooksController extends GetxController {
     try {
       bookRefreshing.value = true;
       if (query.value == 0) {
+        isFavourite.value = false;
         BooksData latestResult =
             await bookApi.getLatestBook(startIndex.value, maxResults);
         itemData!.addAll(latestResult.items!);
@@ -112,9 +128,9 @@ class BooksController extends GetxController {
         startIndex.value = startIndex.value + 1;
         return latestResult;
       } else {
-        // BooksData favoriteResult = await bookApi.getRelevanceBook();
-        itemData!.value = [];
-        bookRefreshing.value = false;
+        print('no pagination for my favourite');
+        isFavourite.value = true;
+        bookRefreshing.value = true;
         return null;
       }
     } on NetworkException {
@@ -126,5 +142,4 @@ class BooksController extends GetxController {
       snackBarError('An Error Occured!', '$e', false);
     }
   }
-
 }

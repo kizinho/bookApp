@@ -66,36 +66,32 @@ class OpenAndCloseDetailsDrawer extends StatelessWidget {
 
           leading: Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            child: IconButton(
-              icon: drawer.removePageController.value == false
-                  ? Icon(
+            child: drawer.removePageController.value == false
+                ? GestureDetector(
+                    child: Icon(
                       Icons.arrow_back_ios,
                       color: bookDetails.changeSliverBar.value
                           ? Theme.of(context).cardColor
                           : Theme.of(context).highlightColor.withOpacity(0.5),
-                    )
-                  : GestureDetector(
-                      child: Icon(
-                        CupertinoIcons.clear_circled,
-                        color: bookDetails.changeSliverBar.value
-                            ? Theme.of(context).cardColor
-                            : Theme.of(context).highlightColor.withOpacity(0.8),
-                      ),
-                      onTap: () {
-                        if (drawer.drawerKeyDetails.value.currentState!
-                            .isOpened())
-                          drawer.drawerKeyDetails.value.currentState!
-                              .closeDrawer();
-                        else
-                          drawer.drawerKeyDetails.value.currentState!
-                              .openDrawer();
-                      },
                     ),
-              tooltip: 'Back',
-              onPressed: () {
-                Get.back();
-              },
-            ),
+                    onTap: () => Get.back())
+                : GestureDetector(
+                    child: Icon(
+                      CupertinoIcons.clear_circled,
+                      color: bookDetails.changeSliverBar.value
+                          ? Theme.of(context).cardColor
+                          : Theme.of(context).highlightColor.withOpacity(0.8),
+                    ),
+                    onTap: () {
+                      if (drawer.drawerKeyDetails.value.currentState!
+                          .isOpened())
+                        drawer.drawerKeyDetails.value.currentState!
+                            .closeDrawer();
+                      else
+                        drawer.drawerKeyDetails.value.currentState!
+                            .openDrawer();
+                    },
+                  ),
           ), //IconButton
 
           actions: <Widget>[

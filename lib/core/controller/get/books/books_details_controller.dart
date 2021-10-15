@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import '../../../../locator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'books_controller.dart';
+
 class BooksDetailsController extends GetxController {
   //API
   var bookApi = locator<BooksApi>();
@@ -83,6 +85,7 @@ class BooksDetailsController extends GetxController {
         .then((snapshot) {
       snapshot.docs.first.reference.delete();
       favorite.value = false;
+      Get.find<BooksController>().getBookTab();
       snackBarSuccess('success', 'favorite removed', false);
     }).catchError((error) {
       snackBarError('error', '$error', false);
@@ -90,7 +93,6 @@ class BooksDetailsController extends GetxController {
   }
 
   checkFavorite(bookId) {
-    print('incoming');
     FirebaseFirestore.instance
         .collection('favorites')
         .where('bookId', isEqualTo: bookId)
