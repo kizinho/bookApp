@@ -1,3 +1,4 @@
+import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
 import 'package:bookapp/core/controller/get/books/books_details_controller.dart';
 import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
 import 'package:bookapp/view/utils/remove_bracket_from_authors.dart';
@@ -22,14 +23,15 @@ class BooksDetails extends StatelessWidget {
   final rating;
   final author;
   final category;
-  final favourite;
   final createdAt;
   final description;
   final buy;
-  final avaliable;
+  final available;
+  final favourite;
   final amount;
   final url;
   final preview;
+  final bookId;
   const BooksDetails(
       {Key? key,
       this.title,
@@ -37,19 +39,23 @@ class BooksDetails extends StatelessWidget {
       this.rating,
       this.author,
       this.category,
-      this.favourite,
       this.createdAt,
       this.description,
       this.buy,
-      this.avaliable,
+      this.available,
+      this.favourite,
       this.amount,
       this.url,
-      this.preview})
+      this.preview,
+      this.bookId})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    if (favourite == false)
+      bookDetails.checkFavorite(bookId);
+    else
+      bookDetails.favorite.value = true;
     bookDetails.changeSliverBar.value = true;
-    bookDetails.favorite.value = favourite;
     return Scaffold(
         body: Obx(
       () => BookDrawer(
@@ -158,100 +164,132 @@ class BooksDetails extends StatelessWidget {
                           child: Padding(
                             padding:
                                 const EdgeInsets.only(top: 14.0, bottom: 14.0),
-                            child: Obx(() => Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          WidgetSpan(
-                                            child: bookDetails.favorite.value
-                                                ? Icon(
-                                                    Icons.favorite,
-                                                    color: Colors.red,
-                                                    size: 20,
-                                                  )
-                                                : Icon(
-                                                    Icons.favorite_border,
-                                                    color: Colors.red,
-                                                    size: 20,
-                                                  ),
-                                          ),
-                                          WidgetSpan(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 4.0, bottom: 3),
-                                              child: Text('Favorite',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline6),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Text.rich(
-                                      TextSpan(
-                                        children: [
-                                          WidgetSpan(
-                                            child: Icon(
-                                              Icons.calendar_today,
-                                              color: Theme.of(context)
-                                                  .disabledColor,
-                                              size: 20,
-                                            ),
-                                          ),
-                                          WidgetSpan(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 4.0, bottom: 3),
-                                              child: Text('${time(createdAt)}',
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .headline6),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      child: Text.rich(
-                                        TextSpan(
-                                          children: [
-                                            WidgetSpan(
-                                              child: Icon(
-                                                Icons.share,
-                                                color: Theme.of(context)
-                                                    .disabledColor,
-                                                size: 20,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        child: bookDetails.favorite.value
+                                            ? GestureDetector(
+                                                child: Icon(
+                                                  Icons.favorite,
+                                                  color: Colors.red,
+                                                  size: 20,
+                                                ),
+                                                onTap: () {
+                                                  bookDetails.onDeleteFavorite(
+                                                      bookId,
+                                                      Get.find<AuthController>()
+                                                          .userId
+                                                          .value);
+                                                },
+                                              )
+                                            : GestureDetector(
+                                                child: Icon(
+                                                  Icons.favorite_border,
+                                                  color: Colors.red,
+                                                  size: 20,
+                                                ),
+                                                onTap: () {
+                                                  bookDetails.onSubmitFavorite(
+                                                    bookId,
+                                                    Get.find<AuthController>()
+                                                        .userId
+                                                        .value,
+                                                    title,
+                                                    image,
+                                                    rating,
+                                                    author,
+                                                    category,
+                                                    createdAt,
+                                                    description,
+                                                    buy,
+                                                    available == 'FOR_SALE'
+                                                        ? 'FOR_SALE'
+                                                        : 'NOT_FOR_SALE',
+                                                    amount,
+                                                    url,
+                                                    preview,
+                                                  );
+                                                },
                                               ),
-                                            ),
-                                            WidgetSpan(
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 4.0, bottom: 3),
-                                                child: Text('Share',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .headline6),
-                                              ),
-                                            ),
-                                          ],
+                                      ),
+                                      WidgetSpan(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 4.0, bottom: 3),
+                                          child: Text('Favorite',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline6),
                                         ),
                                       ),
-                                      onTap: () {
-                                        if (buy == null)
-                                          snackBarWarning(
-                                              'warning',
-                                              'this book cant be shared, not for sale',
-                                              false);
-                                        else
-                                          share(buy, title);
-                                      },
+                                    ],
+                                  ),
+                                ),
+                                Text.rich(
+                                  TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        child: Icon(
+                                          Icons.calendar_today,
+                                          color:
+                                              Theme.of(context).disabledColor,
+                                          size: 20,
+                                        ),
+                                      ),
+                                      WidgetSpan(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 4.0, bottom: 3),
+                                          child: Text('${time(createdAt)}',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline6),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                GestureDetector(
+                                  child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        WidgetSpan(
+                                          child: Icon(
+                                            Icons.share,
+                                            color:
+                                                Theme.of(context).disabledColor,
+                                            size: 20,
+                                          ),
+                                        ),
+                                        WidgetSpan(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 4.0, bottom: 3),
+                                            child: Text('Share',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline6),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                )),
+                                  ),
+                                  onTap: () {
+                                    if (buy == null)
+                                      snackBarWarning(
+                                          'warning',
+                                          'this book cant be shared, not for sale',
+                                          false);
+                                    else
+                                      share(buy, title);
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -368,7 +406,7 @@ class BooksDetails extends StatelessWidget {
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               left: 4.0, bottom: 1),
-                                          child: avaliable == 'FOR_SALE'
+                                          child: available == 'FOR_SALE'
                                               ? Text('Buy Now',
                                                   style: Theme.of(context)
                                                       .textTheme
@@ -387,9 +425,7 @@ class BooksDetails extends StatelessWidget {
                               onTap: () {
                                 if (buy == null)
                                   snackBarWarning(
-                                      'warning',
-                                      'not for sale',
-                                      false);
+                                      'warning', 'not for sale', false);
                                 else
                                   share(buy, title);
                               },

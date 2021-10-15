@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 dataNavigate(Item e){
   Get.to(() => BooksDetails(
+    bookId: e.id,
       title: e.volumeInfo!.title,
       image: e.volumeInfo!.imageLinks == null
           ? ApiRoutes.bookNoImage
@@ -18,6 +19,6 @@ dataNavigate(Item e){
       createdAt: e.volumeInfo!.publishedDate,
       description: e.volumeInfo!.description,
       buy: e.saleInfo!.buyLink,
-      avaliable: e.saleInfo!.saleability,
+      available: e.saleInfo!.saleability,
       amount: e.saleInfo!.listPrice,url:e.accessInfo!.webReaderLink,preview:e.volumeInfo!.previewLink));
 }

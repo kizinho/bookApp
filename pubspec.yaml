@@ -45,6 +45,7 @@ dependencies:
   jiffy: ^4.1.0
   url_launcher: ^6.0.12
   share:
+  cloud_firestore:
 dev_dependencies:
   flutter_test:
     sdk: flutter

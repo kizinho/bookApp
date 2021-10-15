@@ -44,6 +44,7 @@ android {
         applicationId "com.bookapp.bookapp"
         minSdkVersion 16
         targetSdkVersion 30
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

@@ -6,6 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 class AuthController extends GetxController {
   RxBool isAuthenticated = false.obs;
   RxString username = ''.obs;
+  RxString userId = ''.obs;
   RxString photo = ApiRoutes.avatar.obs;
 
   @override
@@ -18,6 +19,7 @@ class AuthController extends GetxController {
     if (user != null) {
       isAuthenticated.value = true;
       username.value = user.displayName!;
+      userId.value = user.uid;
       if(user.photoURL !=null) {
         photo.value = user.photoURL!;
       }
