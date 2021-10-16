@@ -33,6 +33,7 @@ class BooksController extends GetxController {
   RxString searchTitle = ''.obs;
   RxString searchValue = 'Newest'.obs;
   RxInt searchMaxResult = 10.obs;
+  RxBool checkResult = false.obs;
   @override
   void onInit() {
     myList();
@@ -159,8 +160,10 @@ class BooksController extends GetxController {
                 .add(FavouriteModel.fromDocumentSnapshot(doc: result));
           });
           if (itemDataFavorite!.isEmpty) {
-            snackBarWarning(
-                'issues', 'you have not added books to your favorite', false);
+            checkResult.value = true;
+            return null;
+          }else{
+            checkResult.value = false;
           }
           return itemDataFavorite;
         });

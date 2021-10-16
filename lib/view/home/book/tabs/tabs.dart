@@ -104,7 +104,14 @@ class TabDataList extends StatelessWidget {
                     .map((e) => TabDataBooks(
                           e: e,
                         ))
-                    .toList()
+                    .toList(),
+            if (books.checkResult.value == true)
+              Center(
+                child: Text(
+                  'you have not added books to your favorite',
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+              )
             else if (books.itemDataFavorite!.isEmpty)
               ...books.tab.map((e) => SkeletonTabData()).toList()
             else

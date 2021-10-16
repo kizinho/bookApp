@@ -1,11 +1,15 @@
 import 'package:bookapp/core/controller/get/books/books_controller.dart';
+import 'package:bookapp/core/controller/get/books/search_controller.dart';
+import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
 import 'package:bookapp/view/home/book/search/search_details.dart';
+import 'package:bookapp/view/widget/snackbar/warning.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 final books = Get.find<BooksController>();
+final search = Get.put(SearchController());
 
 class SearchBar extends StatelessWidget {
   @override
@@ -45,7 +49,6 @@ class SearchBar extends StatelessWidget {
                   borderSide: BorderSide(
                       color: Theme.of(context).shadowColor, width: 1.0),
                 ),
-
                 labelStyle: Theme.of(context).textTheme.overline,
               ),
               textInputAction: TextInputAction.search,
@@ -53,10 +56,14 @@ class SearchBar extends StatelessWidget {
                 return value!.isEmpty ? 'Keywords can not be empty' : null;
               },
               onFieldSubmitted: (v) {
-                if (searchFormKey.currentState!
-                    .validate()) {
-                  books.searchTitle.value = books.searchController.text ;
-                  Get.offAll(() => SearchDetails());
+                if (searchFormKey.currentState!.validate()) {
+                  Get.find<DrawerAppController>()
+                      .automaticallyImplyLeading
+                      .value = true;
+                  books.searchTitle.value = books.searchController.text;
+                  Get.to(() => SearchDetails());
+                  search.getSearchResult(books.searchValue.value.toLowerCase(),
+                      books.searchMaxResult.value, books.searchTitle.value);
                 }
               },
             ),
@@ -176,6 +183,39 @@ class SearchBar extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 30,
+                ),
+                GestureDetector(
+                  child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            'Search',
+                            style: Theme.of(context).textTheme.headline1,
+                          ),
+                        )),
+                  ),
+                  onTap: () {
+                    if (books.searchController.text.isNotEmpty) {
+                      Get.find<DrawerAppController>()
+                          .automaticallyImplyLeading
+                          .value = true;
+                      books.searchTitle.value = books.searchController.text;
+                      Get.to(() => SearchDetails());
+                      search.getSearchResult(
+                          books.searchValue.value.toLowerCase(),
+                          books.searchMaxResult.value,
+                          books.searchTitle.value);
+                    } else {
+                      Get.back();
+                      snackBarWarning('Search error!',
+                          'Keywords field can not be empty', false);
+                    }
+                  },
                 ),
               ],
             )),

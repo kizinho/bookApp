@@ -2,7 +2,6 @@ import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
 import 'package:bookapp/core/controller/get/books/books_controller.dart';
 import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
 import 'package:bookapp/core/controller/get/user/user_controller.dart';
-import 'package:bookapp/view/home/book/book.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,10 +40,11 @@ headerNav(title, context) {
                                 .withOpacity(0.5),
                           ),
                           onTap: () {
+                            drawer.automaticallyImplyLeading.value = false;
                             Get.find<BooksController>()
                                 .searchController
                                 .clear();
-                            Get.to(() => Book());
+                            Get.back();
                           },
                         ));
             },

@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import '../../../../locator.dart';
 import 'books_controller.dart';
 
-final books = Get.find<BooksController>();
+final books = Get.put(BooksController());
 
 class SearchController extends GetxController {
 //API
@@ -17,9 +17,9 @@ class SearchController extends GetxController {
   RxInt startIndex = 0.obs;
   RxList<Item>? itemData = <Item>[].obs;
   RxBool bookRefreshing = false.obs;
+  RxBool checkResult = false.obs;
   @override
   void onInit() {
-    Get.find<DrawerAppController>().automaticallyImplyLeading.value = true;
     getSearchResult(books.searchValue.value.toLowerCase(),
         books.searchMaxResult.value, books.searchTitle.value);
     super.onInit();
@@ -28,8 +28,15 @@ class SearchController extends GetxController {
   getSearchResult(orderBy, maxResults, value) async {
     try {
       startIndex.value = 0;
+      itemData!.value = [];
       BooksData result = await bookApi.searchBook(
           startIndex.value, orderBy, maxResults, value);
+      if (result.items == null) {
+        checkResult.value = true;
+        return null;
+      } else {
+        checkResult.value = false;
+      }
       itemData!.value = result.items!;
       startIndex.value = startIndex.value + 1;
       return result;

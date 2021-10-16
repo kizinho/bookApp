@@ -10,9 +10,9 @@ class BooksData {
   List<Item>? items;
 
   factory BooksData.fromJson(Map<String, dynamic> json) => BooksData(
-        kind: json["kind"],
-        totalItems: json["totalItems"],
-        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+        kind: json["kind"] == null ? null :json["kind"],
+        totalItems:json["totalItems"] == null ? null : json["totalItems"],
+        items: json["items"] == null ? null :List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
