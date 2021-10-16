@@ -20,7 +20,7 @@ dataNavigate(Item e) {
       description: e.volumeInfo!.description,
       buy: e.saleInfo!.buyLink,
       available: e.saleInfo!.saleability!.index,
-      amount: e.saleInfo!.listPrice!.amount,
+      amount: e.saleInfo!.listPrice == null ? null :e.saleInfo!.listPrice!.amount,
       url: e.accessInfo!.webReaderLink,
       preview: e.volumeInfo!.previewLink));
 }

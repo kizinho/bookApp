@@ -31,6 +31,8 @@ class BooksController extends GetxController {
   RxBool isFavourite = false.obs;
   final searchController = TextEditingController();
   RxString searchTitle = ''.obs;
+  RxString searchValue = 'Newest'.obs;
+  RxInt searchMaxResult = 10.obs;
   @override
   void onInit() {
     myList();
@@ -85,26 +87,32 @@ class BooksController extends GetxController {
   }
 
   handleFilter(i) {
-    if (i == 'Newest')
+    if (i == 'Newest') {
       selectedFilter.remove('Relevance');
-    else if (i == 'Relevance')
+      searchValue.value = 'Newest';
+    } else if (i == 'Relevance') {
       selectedFilter.remove('Newest');
-    else if (i == '10 MaxResult') {
+      searchValue.value = 'Relevance';
+    } else if (i == '10 MaxResult') {
       selectedFilter.remove('20 MaxResult');
       selectedFilter.remove('30 MaxResult');
       selectedFilter.remove('40 MaxResult');
+      searchMaxResult.value = 10;
     } else if (i == '20 MaxResult') {
       selectedFilter.remove('10 MaxResult');
       selectedFilter.remove('30 MaxResult');
       selectedFilter.remove('40 MaxResult');
+      searchMaxResult.value = 20;
     } else if (i == '30 MaxResult') {
       selectedFilter.remove('10 MaxResult');
       selectedFilter.remove('20 MaxResult');
       selectedFilter.remove('40 MaxResult');
+      searchMaxResult.value = 30;
     } else if (i == '40 MaxResult') {
       selectedFilter.remove('10 MaxResult');
       selectedFilter.remove('20 MaxResult');
       selectedFilter.remove('30 MaxResult');
+      searchMaxResult.value = 40;
     }
 
     var iSelected = selectedFilter.contains(i);

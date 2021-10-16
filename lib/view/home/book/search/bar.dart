@@ -55,6 +55,7 @@ class SearchBar extends StatelessWidget {
               onFieldSubmitted: (v) {
                 if (searchFormKey.currentState!
                     .validate()) {
+                  books.searchTitle.value = books.searchController.text ;
                   Get.offAll(() => SearchDetails());
                 }
               },

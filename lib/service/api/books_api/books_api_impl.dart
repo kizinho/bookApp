@@ -16,11 +16,21 @@ class BooksApiImpl implements BooksApi {
     return response;
   }
 
-  getLatestBook(startIndex,maxResults) async {
-    var responsebody = await server.get('${ApiRoutes.books}&startIndex=$startIndex&maxResults=$maxResults&key=${ApiRoutes.apiKey}', noAuthHeader());
+  getLatestBook(startIndex, maxResults) async {
+    var responsebody = await server.get(
+        '${ApiRoutes.books}&startIndex=$startIndex&maxResults=$maxResults&key=${ApiRoutes.apiKey}',
+        noAuthHeader());
     var decoded = jsonDecode(responsebody);
     BooksData response = BooksData.fromJson(decoded);
     return response;
   }
 
+  searchBook(startIndex, orderBy, maxResults, value) async {
+    var responsebody = await server.get(
+        '${ApiRoutes.search}?q=$value&orderBy=$orderBy&startIndex=$startIndex&maxResults=$maxResults&key=${ApiRoutes.apiKey}',
+        noAuthHeader());
+    var decoded = jsonDecode(responsebody);
+    BooksData response = BooksData.fromJson(decoded);
+    return response;
+  }
 }
