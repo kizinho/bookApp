@@ -140,6 +140,8 @@ class BooksController extends GetxController {
   getBookTab() async {
     try {
       if (query.value == 0) {
+        startIndex.value = 0;
+        checkResult.value = false;
         isFavourite.value = false;
         BooksData latestResult =
             await bookApi.getLatestBook(startIndex.value, maxResults);

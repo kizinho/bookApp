@@ -77,7 +77,6 @@ class Tabs extends StatelessWidget {
                   onTap: () {
                     books.query.value = i;
                     books.handleButton(books.name[i]);
-                    books.startIndex.value = 0;
                     books.getBookTab();
                   },
                 ),
@@ -96,15 +95,6 @@ class TabDataList extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            if (books.isFavourite.value == false)
-              if (books.itemData!.isEmpty)
-                ...books.tab.map((e) => SkeletonTabData()).toList()
-              else
-                ...books.itemData!
-                    .map((e) => TabDataBooks(
-                          e: e,
-                        ))
-                    .toList(),
             if (books.checkResult.value == true)
               Center(
                 child: Text(
@@ -112,6 +102,16 @@ class TabDataList extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
               )
+            else
+              if (books.isFavourite.value == false)
+              if (books.itemData!.isEmpty)
+                ...books.tab.map((e) => SkeletonTabData()).toList()
+              else
+                ...books.itemData!
+                    .map((e) => TabDataBooks(
+                          e: e,
+                        ))
+                    .toList()
             else if (books.itemDataFavorite!.isEmpty)
               ...books.tab.map((e) => SkeletonTabData()).toList()
             else
