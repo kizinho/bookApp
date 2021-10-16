@@ -28,7 +28,7 @@ class FavouriteModel {
   String? description;
   String? buy;
   String? available;
-  String? amount;
+  double? amount;
   String? url;
   String? preview;
 

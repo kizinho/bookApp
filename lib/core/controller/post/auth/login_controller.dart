@@ -43,6 +43,7 @@ class LoginController extends GetxController {
       if (user!= null) {
         authUser.isAuthenticated.value = true;
         authUser.username.value = user.displayName!;
+        authUser.userId.value = user.uid;
         if (user.photoURL != null)
           authUser.photo.value = user.photoURL!;
         else

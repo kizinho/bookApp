@@ -1,4 +1,6 @@
+import 'package:bookapp/core/controller/get/books/books_controller.dart';
 import 'package:bookapp/core/model/user/menu/menu_list.dart';
+import 'package:bookapp/view/widget/snackbar/warning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,17 +42,19 @@ class UserController extends GetxController {
   ];
   signOut() async {
     await FirebaseAuth.instance.signOut();
+    Get.find<BooksController>().itemDataFavorite!.clear();
+    Get.find<BooksController>().selectedTab.value = ['Latest'];
+    Get.find<BooksController>().query.value = 0;
+    Get.find<BooksController>().isFavourite.value = false;
     Get.offNamed("login");
   }
+
   navigate(value) {
-    if (value == 'Profile') {
-    }
-    if (value == 'Change Password') {
-    }
-    if (value == 'Change Avatar') {
-    }
-    if (value == 'Logout') {
-      signOut();
-    }
+    if (value == 'Profile') snackBarWarning('warning', 'todo do later', false);
+    if (value == 'Change Password')
+      snackBarWarning('warning', 'todo do later', false);
+    if (value == 'Change Avatar')
+      snackBarWarning('warning', 'todo do later', false);
+    if (value == 'Logout') signOut();
   }
 }

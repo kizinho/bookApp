@@ -1,6 +1,8 @@
 import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
+import 'package:bookapp/core/controller/get/books/books_controller.dart';
 import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
 import 'package:bookapp/core/controller/get/user/user_controller.dart';
+import 'package:bookapp/view/home/book/book.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,24 +14,39 @@ headerNav(title, context) {
   return Padding(
     padding: const EdgeInsets.only(left: 20.0, right: 20),
     child: Obx(() => AppBar(
-          automaticallyImplyLeading: drawer.automaticallyImplyLeading.value,
           leading: Builder(
             builder: (BuildContext context) {
               return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                  icon: drawer.removePageController.value == false
-                      ? Icon(CupertinoIcons.text_alignleft)
-                      : Icon(CupertinoIcons.clear_circled),
-                  onPressed: () {
-                    if (drawer.drawerKey.value.currentState!.isOpened()) {
-                      drawer.drawerKey.value.currentState!.closeDrawer();
-                    } else {
-                      drawer.drawerKey.value.currentState!.openDrawer();
-                    }
-                  },
-                ),
-              );
+                  padding: const EdgeInsets.all(8.0),
+                  child: drawer.automaticallyImplyLeading.value == false
+                      ? IconButton(
+                          icon: drawer.removePageController.value == false
+                              ? Icon(CupertinoIcons.text_alignleft)
+                              : Icon(CupertinoIcons.clear_circled),
+                          onPressed: () {
+                            if (drawer.drawerKey.value.currentState!
+                                .isOpened()) {
+                              drawer.drawerKey.value.currentState!
+                                  .closeDrawer();
+                            } else {
+                              drawer.drawerKey.value.currentState!.openDrawer();
+                            }
+                          },
+                        )
+                      : GestureDetector(
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: Theme.of(context)
+                                .highlightColor
+                                .withOpacity(0.5),
+                          ),
+                          onTap: () {
+                            Get.find<BooksController>()
+                                .searchController
+                                .clear();
+                            Get.to(() => Book());
+                          },
+                        ));
             },
           ),
           title: Center(

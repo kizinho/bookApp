@@ -1,5 +1,4 @@
 import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
-import 'package:bookapp/core/controller/get/books/books_controller.dart';
 import 'package:bookapp/core/controller/get/books/books_details_controller.dart';
 import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
 import 'package:bookapp/view/utils/remove_bracket_from_authors.dart';
@@ -392,7 +391,9 @@ class BooksDetails extends StatelessWidget {
                                 height: 40,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    color:  available == 'FOR_SALE' ?Colors.blue.shade700 : Theme.of(context).disabledColor),
+                                    color: amount != null
+                                        ? Colors.blue.shade700
+                                        : Theme.of(context).disabledColor),
                                 child: Text.rich(
                                   TextSpan(
                                     children: [
@@ -407,7 +408,7 @@ class BooksDetails extends StatelessWidget {
                                         child: Padding(
                                           padding: const EdgeInsets.only(
                                               left: 4.0, bottom: 1),
-                                          child: available == 'FOR_SALE'
+                                          child: amount != null
                                               ? Text('Buy Now',
                                                   style: Theme.of(context)
                                                       .textTheme

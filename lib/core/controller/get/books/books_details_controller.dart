@@ -1,3 +1,4 @@
+import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
 import 'package:bookapp/core/model/user/books/booksDataModel/books_data.dart';
 import 'package:bookapp/service/api/books_api/books_api.dart';
 import 'package:bookapp/view/widget/snackbar/error.dart';
@@ -97,6 +98,7 @@ class BooksDetailsController extends GetxController {
     FirebaseFirestore.instance
         .collection('favorites')
         .where('bookId', isEqualTo: bookId)
+        .where('userId', isEqualTo: Get.find<AuthController>().userId)
         .get()
         .then((snapshot) {
       snapshot.docs.first;

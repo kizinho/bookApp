@@ -26,6 +26,7 @@ class GoogleController extends GetxController {
       if (user != null) {
         auth.isAuthenticated.value = true;
         auth.username.value = user.displayName!;
+        auth.userId.value = user.uid;
         if (user.photoURL != null)
           auth.photo.value = user.photoURL!;
         else

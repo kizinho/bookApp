@@ -12,7 +12,8 @@ class InputForms extends StatelessWidget {
       this.focusNode,
       this.onChanged,
       this.controller,
-      this.icon,this.formatter});
+      this.icon,
+      this.formatter});
   final controller;
   final String? hintText;
   final FocusNode? focusNode;
@@ -23,11 +24,11 @@ class InputForms extends StatelessWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final FormFieldSetter<String>? onChanged;
   final icon;
-  final formatter ;
+  final formatter;
   @override
   Widget build(BuildContext context) {
     return new TextFormField(
-      inputFormatters:formatter,
+      inputFormatters: formatter,
       focusNode: focusNode,
       cursorColor: Theme.of(context).primaryColor,
       style: Theme.of(context).textTheme.headline3,

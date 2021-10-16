@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
-final books = Get.put(BooksController());
+final books = Get.find<BooksController>();
 
 class Tabs extends StatelessWidget {
   const Tabs({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class Tabs extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       color: books.selectedTab.contains(books.name[i])
                           ? Theme.of(context).primaryColor
-                          : Theme.of(context).disabledColor.withOpacity(0.09),
+                          : Theme.of(context).disabledColor.withOpacity(0.08),
                       boxShadow: [
                         if (books.selectedTab.contains(books.name[i]))
                           const BoxShadow(

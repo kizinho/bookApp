@@ -19,8 +19,8 @@ dataNavigate(Item e) {
       createdAt: e.volumeInfo!.publishedDate,
       description: e.volumeInfo!.description,
       buy: e.saleInfo!.buyLink,
-      available: e.saleInfo!.saleability,
-      amount: e.saleInfo!.listPrice,
+      available: e.saleInfo!.saleability!.index,
+      amount: e.saleInfo!.listPrice!.amount,
       url: e.accessInfo!.webReaderLink,
       preview: e.volumeInfo!.previewLink));
 }

@@ -6,6 +6,7 @@ import 'package:bookapp/service/api/books_api/books_api.dart';
 import 'package:bookapp/view/widget/snackbar/error.dart';
 import 'package:bookapp/view/widget/snackbar/warning.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../locator.dart';
@@ -15,9 +16,11 @@ class BooksController extends GetxController {
   var bookApi = locator<BooksApi>();
   RxBool status = false.obs;
   RxList name = [].obs;
+  RxList filterName = [].obs;
   RxList<Item>? itemData = <Item>[].obs;
   RxList<FavouriteModel>? itemDataFavorite = <FavouriteModel>[].obs;
   RxList selectedTab = [].obs;
+  RxList selectedFilter = [].obs;
   RxInt query = 0.obs;
   final booksData = Rxn<BooksData>();
   RxInt startIndex = 0.obs;
@@ -26,13 +29,24 @@ class BooksController extends GetxController {
   final tab = new List<int>.generate(25, (i) => i + 1);
   RxBool bookRefreshing = false.obs;
   RxBool isFavourite = false.obs;
+  final searchController = TextEditingController();
+  RxString searchTitle = ''.obs;
   @override
   void onInit() {
     myList();
+    myFilter();
     selectedTab.value = ['Latest'];
     getBookTab();
     getBookRelevance();
     super.onInit();
+  }
+
+  @override
+  onClose() {
+    itemDataFavorite!.clear();
+    selectedFilter.clear();
+    searchController.clear();
+    super.onClose();
   }
 
   Future<void> bookRefresh(value) {
@@ -50,12 +64,51 @@ class BooksController extends GetxController {
     name.value = listsFinal;
   }
 
+  final listsFilter = [
+    'Newest',
+    'Relevance',
+    '10 MaxResult',
+    '20 MaxResult',
+    '30 MaxResult',
+    '40 MaxResult',
+  ];
+  myFilter() {
+    filterName.value = listsFilter;
+  }
+
   handleButton(i) {
     if (i == 'My Favorites')
       selectedTab.remove('Latest');
     else if (i == 'Latest') selectedTab.remove('My Favorites');
     var iSelected = selectedTab.contains(i);
     if (!iSelected) selectedTab.add(i);
+  }
+
+  handleFilter(i) {
+    if (i == 'Newest')
+      selectedFilter.remove('Relevance');
+    else if (i == 'Relevance')
+      selectedFilter.remove('Newest');
+    else if (i == '10 MaxResult') {
+      selectedFilter.remove('20 MaxResult');
+      selectedFilter.remove('30 MaxResult');
+      selectedFilter.remove('40 MaxResult');
+    } else if (i == '20 MaxResult') {
+      selectedFilter.remove('10 MaxResult');
+      selectedFilter.remove('30 MaxResult');
+      selectedFilter.remove('40 MaxResult');
+    } else if (i == '30 MaxResult') {
+      selectedFilter.remove('10 MaxResult');
+      selectedFilter.remove('20 MaxResult');
+      selectedFilter.remove('40 MaxResult');
+    } else if (i == '40 MaxResult') {
+      selectedFilter.remove('10 MaxResult');
+      selectedFilter.remove('20 MaxResult');
+      selectedFilter.remove('30 MaxResult');
+    }
+
+    var iSelected = selectedFilter.contains(i);
+    if (!iSelected) selectedFilter.add(i);
   }
 
   loadBookTabs() {
@@ -86,9 +139,10 @@ class BooksController extends GetxController {
         return latestResult;
       } else {
         isFavourite.value = true;
-        itemDataFavorite!.value =[];
+        itemDataFavorite!.value = [];
         FirebaseFirestore.instance
             .collection('favorites')
+            .orderBy('createdAt', descending: true)
             .where('userId', isEqualTo: Get.find<AuthController>().userId.value)
             .get()
             .then((querySnapshot) {
@@ -96,8 +150,9 @@ class BooksController extends GetxController {
             itemDataFavorite!
                 .add(FavouriteModel.fromDocumentSnapshot(doc: result));
           });
-          if(itemDataFavorite!.isEmpty){
-            snackBarWarning('issues', 'you have not added books to your favorite', false);
+          if (itemDataFavorite!.isEmpty) {
+            snackBarWarning(
+                'issues', 'you have not added books to your favorite', false);
           }
           return itemDataFavorite;
         });

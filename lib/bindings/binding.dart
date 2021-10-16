@@ -10,8 +10,8 @@ class BindingControllers implements Bindings {
   void dependencies() {
     Get.put<AuthController>(AuthController(), permanent: true);
     Get.put<DrawerAppController>(DrawerAppController(), permanent: true);
+    Get.put<BooksController>(BooksController(), permanent: true);
     Get.lazyPut(() => (UserController()));
     Get.lazyPut(() => (OnboardingController()));
-    Get.lazyPut(() => (BooksController()));
   }
 }
