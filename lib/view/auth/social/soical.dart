@@ -1,5 +1,5 @@
-import 'package:bookapp/core/controller/post/auth/apple.dart';
-import 'package:bookapp/core/controller/post/auth/google_controller.dart';
+import 'package:booksfinder/core/controller/post/auth/apple.dart';
+import 'package:booksfinder/core/controller/post/auth/google_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';

@@ -1,6 +1,6 @@
-import 'package:bookapp/core/controller/get/books/books_controller.dart';
-import 'package:bookapp/core/model/user/menu/menu_list.dart';
-import 'package:bookapp/view/widget/snackbar/warning.dart';
+import 'package:booksfinder/core/controller/get/books/books_controller.dart';
+import 'package:booksfinder/core/model/user/menu/menu_list.dart';
+import 'package:booksfinder/view/widget/snackbar/warning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

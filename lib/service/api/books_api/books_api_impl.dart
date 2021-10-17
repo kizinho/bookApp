@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:bookapp/core/model/user/books/booksDataModel/books_data.dart';
-import 'package:bookapp/service/api/api_utils/api_helper.dart';
-import 'package:bookapp/service/api/api_utils/api_routes.dart';
-import 'package:bookapp/service/header.dart';
+import 'package:booksfinder/core/model/user/books/booksDataModel/books_data.dart';
+import 'package:booksfinder/service/api/api_utils/api_helper.dart';
+import 'package:booksfinder/service/api/api_utils/api_routes.dart';
+import 'package:booksfinder/service/header.dart';
 
 import '../../../../locator.dart';
 import 'books_api.dart';

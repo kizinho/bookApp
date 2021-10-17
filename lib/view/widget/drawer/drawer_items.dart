@@ -1,6 +1,6 @@
-import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
-import 'package:bookapp/core/controller/get/theme/theme_controller.dart';
-import 'package:bookapp/core/controller/get/user/user_controller.dart';
+import 'package:booksfinder/core/controller/get/auth/auth_controller.dart';
+import 'package:booksfinder/core/controller/get/theme/theme_controller.dart';
+import 'package:booksfinder/core/controller/get/user/user_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

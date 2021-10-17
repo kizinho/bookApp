@@ -1,14 +1,14 @@
-import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
-import 'package:bookapp/core/controller/get/books/books_details_controller.dart';
-import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
-import 'package:bookapp/view/utils/remove_bracket_from_authors.dart';
-import 'package:bookapp/view/utils/share/share.dart';
-import 'package:bookapp/view/utils/switch_rating.dart';
-import 'package:bookapp/view/utils/time_convert.dart';
-import 'package:bookapp/view/widget/drawer/detailsDrawer/open_close_drawer.dart';
-import 'package:bookapp/view/widget/drawer/drawer_animation.dart';
-import 'package:bookapp/view/widget/drawer/drawer_items.dart';
-import 'package:bookapp/view/widget/snackbar/warning.dart';
+import 'package:booksfinder/core/controller/get/auth/auth_controller.dart';
+import 'package:booksfinder/core/controller/get/books/books_details_controller.dart';
+import 'package:booksfinder/core/controller/get/drawer/drawer_controller.dart';
+import 'package:booksfinder/view/utils/remove_bracket_from_authors.dart';
+import 'package:booksfinder/view/utils/share/share.dart';
+import 'package:booksfinder/view/utils/switch_rating.dart';
+import 'package:booksfinder/view/utils/time_convert.dart';
+import 'package:booksfinder/view/widget/drawer/detailsDrawer/open_close_drawer.dart';
+import 'package:booksfinder/view/widget/drawer/drawer_animation.dart';
+import 'package:booksfinder/view/widget/drawer/drawer_items.dart';
+import 'package:booksfinder/view/widget/snackbar/warning.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -91,7 +91,7 @@ class BooksDetails extends StatelessWidget {
                             '$title',
                             style: GoogleFonts.ptSans(
                                 fontSize: 16,
-                                color: Theme.of(context).highlightColor),
+                                color: Theme.of(context).canvasColor),
                           ),
                           SizedBox(
                             height: 8,

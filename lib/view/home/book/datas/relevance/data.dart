@@ -1,8 +1,8 @@
-import 'package:bookapp/core/model/user/books/booksDataModel/books_data.dart';
-import 'package:bookapp/service/api/api_utils/api_routes.dart';
-import 'package:bookapp/view/utils/remove_bracket_from_authors.dart';
-import 'package:bookapp/view/utils/switch_rating.dart';
-import 'package:bookapp/view/widget/book/data_navigation.dart';
+import 'package:booksfinder/core/model/user/books/booksDataModel/books_data.dart';
+import 'package:booksfinder/service/api/api_utils/api_routes.dart';
+import 'package:booksfinder/view/utils/remove_bracket_from_authors.dart';
+import 'package:booksfinder/view/utils/switch_rating.dart';
+import 'package:booksfinder/view/widget/book/data_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -51,7 +51,7 @@ class DataBooks extends StatelessWidget {
                   Text(
                     '${e.volumeInfo!.title}',
                     style: GoogleFonts.ptSans(
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).scaffoldBackgroundColor),
                     maxLines: 1,

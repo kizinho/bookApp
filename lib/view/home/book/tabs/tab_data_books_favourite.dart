@@ -1,9 +1,9 @@
-import 'package:bookapp/core/controller/get/books/books_controller.dart';
-import 'package:bookapp/core/model/user/books/booksDataModel/books_data.dart';
-import 'package:bookapp/core/model/user/books/booksDataModel/books_favourite.dart';
-import 'package:bookapp/service/api/api_utils/api_routes.dart';
-import 'package:bookapp/view/widget/book/data_navigation.dart';
-import 'package:bookapp/view/widget/book/image.dart';
+import 'package:booksfinder/core/controller/get/books/books_controller.dart';
+import 'package:booksfinder/core/model/user/books/booksDataModel/books_data.dart';
+import 'package:booksfinder/core/model/user/books/booksDataModel/books_favourite.dart';
+import 'package:booksfinder/service/api/api_utils/api_routes.dart';
+import 'package:booksfinder/view/widget/book/data_navigation.dart';
+import 'package:booksfinder/view/widget/book/image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

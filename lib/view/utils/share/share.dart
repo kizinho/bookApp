@@ -1,4 +1,4 @@
-import 'package:bookapp/view/widget/snackbar/error.dart';
+import 'package:booksfinder/view/widget/snackbar/error.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -1,4 +1,4 @@
-import 'package:bookapp/view/widget/skeleton/skeleton_container.dart';
+import 'package:booksfinder/view/widget/skeleton/skeleton_container.dart';
 import 'package:flutter/material.dart';
 
 class SkeletonTabData extends StatelessWidget {

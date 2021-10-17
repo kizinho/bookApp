@@ -1,5 +1,5 @@
-import 'package:bookapp/core/controller/get/books/books_details_controller.dart';
-import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
+import 'package:booksfinder/core/controller/get/books/books_details_controller.dart';
+import 'package:booksfinder/core/controller/get/drawer/drawer_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

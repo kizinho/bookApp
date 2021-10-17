@@ -1,5 +1,5 @@
-import 'package:bookapp/core/model/onboarding/onboarding_status.dart';
-import 'package:bookapp/service/api/api_utils/api_helper.dart';
+import 'package:booksfinder/core/model/onboarding/onboarding_status.dart';
+import 'package:booksfinder/service/api/api_utils/api_helper.dart';
 
 import '../../../../locator.dart';
 import 'authentication_api.dart';

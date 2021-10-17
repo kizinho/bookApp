@@ -1,5 +1,5 @@
-import 'package:bookapp/core/controller/get/onboarding_controller/onboarding_controller.dart';
-import 'package:bookapp/view/onboarding/slider_tile.dart';
+import 'package:booksfinder/core/controller/get/onboarding_controller/onboarding_controller.dart';
+import 'package:booksfinder/view/onboarding/slider_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

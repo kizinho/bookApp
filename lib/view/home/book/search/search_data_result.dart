@@ -1,8 +1,8 @@
-import 'package:bookapp/core/controller/get/books/books_controller.dart';
-import 'package:bookapp/core/controller/get/books/search_controller.dart';
-import 'package:bookapp/view/home/book/tabs/skeleton_data_tab.dart';
-import 'package:bookapp/view/home/book/tabs/tab_data_books.dart';
-import 'package:bookapp/view/widget/loader/loader.dart';
+import 'package:booksfinder/core/controller/get/books/books_controller.dart';
+import 'package:booksfinder/core/controller/get/books/search_controller.dart';
+import 'package:booksfinder/view/home/book/tabs/skeleton_data_tab.dart';
+import 'package:booksfinder/view/home/book/tabs/tab_data_books.dart';
+import 'package:booksfinder/view/widget/loader/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

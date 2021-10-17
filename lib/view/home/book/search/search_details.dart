@@ -1,4 +1,4 @@
-import 'package:bookapp/view/home/book/search/search_page.dart';
+import 'package:booksfinder/view/home/book/search/search_page.dart';
 import 'package:flutter/material.dart';
 class SearchDetails extends StatelessWidget {
   @override

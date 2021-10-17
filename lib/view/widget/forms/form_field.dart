@@ -1,4 +1,4 @@
-import 'package:bookapp/core/controller/get/basic/basic_controller.dart';
+import 'package:booksfinder/core/controller/get/basic/basic_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -55,7 +55,7 @@ class FormInput extends StatelessWidget {
             helperStyle: Theme.of(context).textTheme.headline4,
             hintStyle: Theme.of(context).textTheme.headline3,
             prefixIcon: Icon(Icons.password,
-                color: Theme.of(context).primaryColorDark, size: 20),
+                color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.6), size: 20),
             suffixIcon: Obx(() => new GestureDetector(
                   onTap: () {
                     basic.onTap(basic.obscureText.value);

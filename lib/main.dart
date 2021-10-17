@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -12,8 +13,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //firebase messaging
   await Firebase.initializeApp();
-  final directory = await getApplicationDocumentsDirectory();
-  Hive.init(directory.path);
+  if (kIsWeb) {
+    // Set web-specific directory Here
+  } else {
+    final directory = await getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
+  }
   setupLocator();
   //Initialize theme
   runApp(MaterialAPP());

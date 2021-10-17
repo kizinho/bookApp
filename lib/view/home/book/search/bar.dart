@@ -1,8 +1,8 @@
-import 'package:bookapp/core/controller/get/books/books_controller.dart';
-import 'package:bookapp/core/controller/get/books/search_controller.dart';
-import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
-import 'package:bookapp/view/home/book/search/search_details.dart';
-import 'package:bookapp/view/widget/snackbar/warning.dart';
+import 'package:booksfinder/core/controller/get/books/books_controller.dart';
+import 'package:booksfinder/core/controller/get/books/search_controller.dart';
+import 'package:booksfinder/core/controller/get/drawer/drawer_controller.dart';
+import 'package:booksfinder/view/home/book/search/search_details.dart';
+import 'package:booksfinder/view/widget/snackbar/warning.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

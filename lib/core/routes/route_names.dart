@@ -1,9 +1,9 @@
-import 'package:bookapp/core/controller/get/auth/middleware_controller.dart';
-import 'package:bookapp/view/auth/login.dart';
-import 'package:bookapp/view/auth/register.dart';
-import 'package:bookapp/view/auth/social.dart';
-import 'package:bookapp/view/home/book/book.dart';
-import 'package:bookapp/view/onboarding/onboarding.dart';
+import 'package:booksfinder/core/controller/get/auth/middleware_controller.dart';
+import 'package:booksfinder/view/auth/login.dart';
+import 'package:booksfinder/view/auth/register.dart';
+import 'package:booksfinder/view/auth/social.dart';
+import 'package:booksfinder/view/home/book/book.dart';
+import 'package:booksfinder/view/onboarding/onboarding.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

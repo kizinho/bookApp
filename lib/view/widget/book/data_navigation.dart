@@ -1,7 +1,7 @@
-import 'package:bookapp/core/model/user/books/booksDataModel/books_data.dart';
-import 'package:bookapp/core/model/user/books/booksDataModel/books_favourite.dart';
-import 'package:bookapp/service/api/api_utils/api_routes.dart';
-import 'package:bookapp/view/home/book/details/books_details.dart';
+import 'package:booksfinder/core/model/user/books/booksDataModel/books_data.dart';
+import 'package:booksfinder/core/model/user/books/booksDataModel/books_favourite.dart';
+import 'package:booksfinder/service/api/api_utils/api_routes.dart';
+import 'package:booksfinder/view/home/book/details/books_details.dart';
 import 'package:get/get.dart';
 
 dataNavigate(Item e) {

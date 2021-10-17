@@ -1,6 +1,6 @@
-import 'package:bookapp/core/controller/get/books/books_controller.dart';
-import 'package:bookapp/view/home/book/datas/relevance/data.dart';
-import 'package:bookapp/view/home/book/datas/relevance/skeleton_data.dart';
+import 'package:booksfinder/core/controller/get/books/books_controller.dart';
+import 'package:booksfinder/view/home/book/datas/relevance/data.dart';
+import 'package:booksfinder/view/home/book/datas/relevance/skeleton_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

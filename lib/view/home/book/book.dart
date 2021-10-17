@@ -1,7 +1,7 @@
-import 'package:bookapp/core/controller/get/drawer/drawer_controller.dart';
-import 'package:bookapp/view/home/book/books_page.dart';
-import 'package:bookapp/view/widget/drawer/drawer_animation.dart';
-import 'package:bookapp/view/widget/drawer/drawer_items.dart';
+import 'package:booksfinder/core/controller/get/drawer/drawer_controller.dart';
+import 'package:booksfinder/view/home/book/books_page.dart';
+import 'package:booksfinder/view/widget/drawer/drawer_animation.dart';
+import 'package:booksfinder/view/widget/drawer/drawer_items.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

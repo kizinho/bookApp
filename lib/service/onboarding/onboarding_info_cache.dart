@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:bookapp/core/model/onboarding/onboarding_status.dart';
+import 'package:booksfinder/core/model/onboarding/onboarding_status.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardInfoCache {

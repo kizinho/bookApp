@@ -1,4 +1,4 @@
-import 'package:bookapp/view/widget/loader/loader.dart';
+import 'package:booksfinder/view/widget/loader/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

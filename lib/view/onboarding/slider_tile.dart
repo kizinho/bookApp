@@ -1,5 +1,5 @@
-import 'package:bookapp/core/controller/get/onboarding_controller/onboarding_controller.dart';
-import 'package:bookapp/view/onboarding/build_page_Indicator.dart';
+import 'package:booksfinder/core/controller/get/onboarding_controller/onboarding_controller.dart';
+import 'package:booksfinder/view/onboarding/build_page_Indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

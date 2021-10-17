@@ -1,4 +1,4 @@
-name: bookapp
+name: booksfinder
 description: An app to get books from google book api
 
 # The following line prevents the package from being accidentally published to
@@ -47,6 +47,7 @@ dependencies:
   share:
   cloud_firestore:
 dev_dependencies:
+  change_app_package_name:
   flutter_test:
     sdk: flutter
 

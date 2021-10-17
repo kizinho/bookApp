@@ -1,9 +1,9 @@
-import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
-import 'package:bookapp/core/controller/get/basic/navigator.dart';
-import 'package:bookapp/service/api/api_utils/api_routes.dart';
-import 'package:bookapp/view/widget/snackbar/error.dart';
-import 'package:bookapp/view/widget/snackbar/success.dart';
-import 'package:bookapp/view/widget/snackbar/warning.dart';
+import 'package:booksfinder/core/controller/get/auth/auth_controller.dart';
+import 'package:booksfinder/core/controller/get/basic/navigator.dart';
+import 'package:booksfinder/service/api/api_utils/api_routes.dart';
+import 'package:booksfinder/view/widget/snackbar/error.dart';
+import 'package:booksfinder/view/widget/snackbar/success.dart';
+import 'package:booksfinder/view/widget/snackbar/warning.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -41,7 +41,7 @@ class AppleController extends GetxController {
       webAuthenticationOptions: WebAuthenticationOptions(
           clientId: 'com.app.booksLearningID',
           redirectUri: Uri.parse(
-              'https://bookapp-9e439.firebaseapp.com/__/auth/handler')),
+              'https://booksfinder-9e439.firebaseapp.com/__/auth/handler')),
       nonce: nonce,
     );
 

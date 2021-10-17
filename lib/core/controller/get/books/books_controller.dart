@@ -1,10 +1,10 @@
-import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
-import 'package:bookapp/core/model/user/books/booksDataModel/books_data.dart';
-import 'package:bookapp/core/model/user/books/booksDataModel/books_favourite.dart';
-import 'package:bookapp/service/api/api_utils/network_exceptions.dart';
-import 'package:bookapp/service/api/books_api/books_api.dart';
-import 'package:bookapp/view/widget/snackbar/error.dart';
-import 'package:bookapp/view/widget/snackbar/warning.dart';
+import 'package:booksfinder/core/controller/get/auth/auth_controller.dart';
+import 'package:booksfinder/core/model/user/books/booksDataModel/books_data.dart';
+import 'package:booksfinder/core/model/user/books/booksDataModel/books_favourite.dart';
+import 'package:booksfinder/service/api/api_utils/network_exceptions.dart';
+import 'package:booksfinder/service/api/books_api/books_api.dart';
+import 'package:booksfinder/view/widget/snackbar/error.dart';
+import 'package:booksfinder/view/widget/snackbar/warning.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

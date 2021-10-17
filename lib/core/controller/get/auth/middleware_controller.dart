@@ -1,4 +1,4 @@
-import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
+import 'package:booksfinder/core/controller/get/auth/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

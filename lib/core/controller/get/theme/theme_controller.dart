@@ -1,6 +1,6 @@
-import 'package:bookapp/service/theme/theme_service.dart';
-import 'package:bookapp/view/theme/theme_dark.dart';
-import 'package:bookapp/view/theme/theme_light.dart';
+import 'package:booksfinder/service/theme/theme_service.dart';
+import 'package:booksfinder/view/theme/theme_dark.dart';
+import 'package:booksfinder/view/theme/theme_light.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -22,7 +22,7 @@ class ThemeController extends GetxController {
   }
 
   void toggleAppTheme(value) async {
-    var box = await Hive.openBox('bookApp');
+    var box = await Hive.openBox('booksfinder');
     _isDark.value = value;
     box.put('isDark', value);
   }

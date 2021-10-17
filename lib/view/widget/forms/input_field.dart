@@ -52,7 +52,7 @@ class InputForms extends StatelessWidget {
         helperStyle: Theme.of(context).textTheme.headline4,
         hintStyle: Theme.of(context).textTheme.headline3,
         prefixIcon:
-            Icon(icon, color: Theme.of(context).primaryColorDark, size: 20),
+            Icon(icon, color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.6), size: 20),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(99.0),
           borderSide:

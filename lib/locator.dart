@@ -1,7 +1,7 @@
-import 'package:bookapp/service/api/api_utils/api_helper.dart';
-import 'package:bookapp/service/api/books_api/books_api.dart';
-import 'package:bookapp/service/api/books_api/books_api_impl.dart';
-import 'package:bookapp/service/onboarding/onboarding_info_cache.dart';
+import 'package:booksfinder/service/api/api_utils/api_helper.dart';
+import 'package:booksfinder/service/api/books_api/books_api.dart';
+import 'package:booksfinder/service/api/books_api/books_api_impl.dart';
+import 'package:booksfinder/service/onboarding/onboarding_info_cache.dart';
 import 'package:get_it/get_it.dart';
 
 import 'service/api/authentication_api/authentication_api.dart';

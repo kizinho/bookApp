@@ -1,7 +1,7 @@
-import 'package:bookapp/core/controller/get/auth/auth_controller.dart';
-import 'package:bookapp/core/controller/get/books/books_controller.dart';
-import 'package:bookapp/view/home/book/search/bar.dart';
-import 'package:bookapp/view/widget/drawer/open_close_drawer.dart';
+import 'package:booksfinder/core/controller/get/auth/auth_controller.dart';
+import 'package:booksfinder/core/controller/get/books/books_controller.dart';
+import 'package:booksfinder/view/home/book/search/bar.dart';
+import 'package:booksfinder/view/widget/drawer/open_close_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +19,7 @@ class BookPage extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0),
-        child: headerNav('BOOKAPP', context),
+        child: headerNav('booksfinder', context),
       ),
       body: RefreshIndicator(
         onRefresh: () => books.bookRefresh(0),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 const double _kTabHeight = 46.0;
 
-class BookAppTabBar extends StatefulWidget implements PreferredSizeWidget {
-  BookAppTabBar({
+class booksfinderTabBar extends StatefulWidget implements PreferredSizeWidget {
+  booksfinderTabBar({
     Key? key,
     required this.tabs,
     this.controller,
@@ -57,10 +57,10 @@ class BookAppTabBar extends StatefulWidget implements PreferredSizeWidget {
   }
 
   @override
-  _BookAppTabBarState createState() => _BookAppTabBarState();
+  _booksfinderTabBarState createState() => _booksfinderTabBarState();
 }
 
-class _BookAppTabBarState extends State<BookAppTabBar>
+class _booksfinderTabBarState extends State<booksfinderTabBar>
     with TickerProviderStateMixin {
   TabController? _controller;
 
@@ -139,7 +139,7 @@ class _BookAppTabBarState extends State<BookAppTabBar>
   }
 
   @override
-  void didUpdateWidget(BookAppTabBar oldWidget) {
+  void didUpdateWidget(booksfinderTabBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.controller != oldWidget.controller) {
       _updateTabController();
