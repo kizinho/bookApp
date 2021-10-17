@@ -38,6 +38,8 @@ dependencies:
   get_it:
   firebase_core:
   firebase_auth:
+  cloud_firestore:
+  cloud_functions:
   google_sign_in: ^5.1.1
   sign_in_with_apple: ^3.2.0
   crypto: ^3.0.1
@@ -45,7 +47,8 @@ dependencies:
   jiffy: ^4.1.0
   url_launcher: ^6.0.12
   share:
-  cloud_firestore:
+
+
 dev_dependencies:
   change_app_package_name:
   flutter_test:

@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../../../locator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:cloud_functions/cloud_functions.dart';
 import 'books_controller.dart';
 
 class BooksDetailsController extends GetxController {
@@ -53,6 +53,32 @@ class BooksDetailsController extends GetxController {
     url,
     preview,
   ) {
+    //comment out to use functions , function not using because of the billing involve
+    // HttpsCallable callable =
+    //     FirebaseFunctions.instance.httpsCallable('addFavorite');
+    // callable({
+    //   bookId: bookId,
+    //   userId: userId,
+    //   title: title,
+    //   image: image,
+    //   rating: rating,
+    //   author: author,
+    //   category: category,
+    //   'publishedDate': createdAt,
+    //   description: description,
+    //   buy: buy,
+    //   available: available,
+    //   amount: amount,
+    //   url: url,
+    //   preview: preview,
+    //   createdAt: DateTime.now()
+    // }).then((value) {
+    //   favorite.value = true;
+    //   Get.find<BooksController>().getBookTab();
+    //   snackBarSuccess('success', 'favorite added', false);
+    // }).catchError((error) {
+    //   snackBarError('error', '$error', false);
+    // });
     FirebaseFirestore.instance.collection('favorites').add({
       'bookId': bookId,
       'userId': userId,
