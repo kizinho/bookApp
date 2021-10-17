@@ -91,7 +91,7 @@ class BooksDetails extends StatelessWidget {
                             '$title',
                             style: GoogleFonts.ptSans(
                                 fontSize: 16,
-                                color: Theme.of(context).canvasColor),
+                                color: Theme.of(context).scaffoldBackgroundColor),
                           ),
                           SizedBox(
                             height: 8,
