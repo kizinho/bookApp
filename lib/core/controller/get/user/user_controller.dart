@@ -1,4 +1,5 @@
 import 'package:booksfinder/core/controller/get/books/books_controller.dart';
+import 'package:booksfinder/core/controller/get/drawer/drawer_controller.dart';
 import 'package:booksfinder/core/model/user/menu/menu_list.dart';
 import 'package:booksfinder/view/widget/snackbar/warning.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,6 +43,7 @@ class UserController extends GetxController {
   ];
   signOut() async {
     await FirebaseAuth.instance.signOut();
+    Get.find<DrawerAppController>().automaticallyImplyLeading.value = false;
     Get.find<BooksController>().itemDataFavorite!.clear();
     Get.find<BooksController>().selectedTab.value = ['Latest'];
     Get.find<BooksController>().query.value = 0;

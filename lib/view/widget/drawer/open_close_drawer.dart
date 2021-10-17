@@ -36,7 +36,7 @@ headerNav(title, context) {
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Theme.of(context)
-                                .canvasColor
+                                .scaffoldBackgroundColor
                                 .withOpacity(0.5),
                           ),
                           onTap: () {
