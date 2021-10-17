@@ -18,6 +18,7 @@ class Tabs extends StatelessWidget {
     return Obx(() =>
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               for (var i = 0; i < books.name.length; i++)
                 GestureDetector(
@@ -50,7 +51,7 @@ class Tabs extends StatelessWidget {
                                     : Icons.book,
                                 size: 14,
                                 color: books.selectedTab.contains(books.name[i])
-                                    ? Theme.of(context).cardColor
+                                    ? Theme.of(context).canvasColor
                                     : Theme.of(context)
                                         .disabledColor
                                         .withOpacity(0.2),
@@ -102,8 +103,7 @@ class TabDataList extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
               )
-            else
-              if (books.isFavourite.value == false)
+            else if (books.isFavourite.value == false)
               if (books.itemData!.isEmpty)
                 ...books.tab.map((e) => SkeletonTabData()).toList()
               else

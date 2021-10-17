@@ -23,7 +23,7 @@ class MaterialAPP extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(ThemeController()).getValuesFromThemeService();
-    return GetMaterialApp(
+    return Obx(()=>GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: BindingControllers(),
       title: 'BOOKS_APP',
@@ -31,6 +31,6 @@ class MaterialAPP extends StatelessWidget {
       initialRoute: RouteNames.routes.first.name,
       getPages: RouteNames.routes,
       theme: Get.put(ThemeController()).appTheme,
-    );
+    ));
   }
 }

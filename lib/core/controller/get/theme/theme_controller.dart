@@ -8,7 +8,7 @@ import 'package:hive/hive.dart';
 import '../../../../locator.dart';
 
 class ThemeController extends GetxController {
-  static RxBool _isDark = false.obs;
+  RxBool _isDark = false.obs;
 
   ThemeData get appTheme => _isDark.value ? appThemeDark : appThemeLight;
 
@@ -21,8 +21,9 @@ class ThemeController extends GetxController {
     _isDark.value = isDark;
   }
 
-  void toggleAppTheme() async {
+  void toggleAppTheme(value) async {
     var box = await Hive.openBox('bookApp');
-    box.put('isDark', _isDark);
+    _isDark.value = value;
+    box.put('isDark', value);
   }
 }

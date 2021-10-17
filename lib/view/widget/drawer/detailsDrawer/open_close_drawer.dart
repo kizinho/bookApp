@@ -60,10 +60,8 @@ class OpenAndCloseDetailsDrawer extends StatelessWidget {
               ) //Images.network
 
               ), //FlexibleSpaceBar
-
           expandedHeight: 230,
           backgroundColor: Theme.of(context).backgroundColor,
-
           leading: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: drawer.removePageController.value == false
@@ -71,16 +69,16 @@ class OpenAndCloseDetailsDrawer extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back_ios,
                       color: bookDetails.changeSliverBar.value
-                          ? Theme.of(context).cardColor
-                          : Theme.of(context).highlightColor.withOpacity(0.5),
+                          ? Theme.of(context).canvasColor
+                          : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.5),
                     ),
                     onTap: () => Get.back())
                 : GestureDetector(
                     child: Icon(
                       CupertinoIcons.clear_circled,
                       color: bookDetails.changeSliverBar.value
-                          ? Theme.of(context).cardColor
-                          : Theme.of(context).highlightColor.withOpacity(0.8),
+                          ? Theme.of(context).canvasColor
+                          : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
                     ),
                     onTap: () {
                       if (drawer.drawerKeyDetails.value.currentState!
@@ -102,14 +100,14 @@ class OpenAndCloseDetailsDrawer extends StatelessWidget {
                     ? Icon(
                         CupertinoIcons.text_alignright,
                         color: bookDetails.changeSliverBar.value
-                            ? Theme.of(context).cardColor
-                            : Theme.of(context).highlightColor.withOpacity(0.8),
+                            ? Theme.of(context).canvasColor
+                            : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
                       )
                     : Icon(
                         CupertinoIcons.clear_circled,
                         color: bookDetails.changeSliverBar.value
-                            ? Theme.of(context).cardColor
-                            : Theme.of(context).highlightColor.withOpacity(0.8),
+                            ? Theme.of(context).canvasColor
+                            : Theme.of(context).scaffoldBackgroundColor.withOpacity(0.8),
                       ),
                 tooltip: 'Menu',
                 onPressed: () {

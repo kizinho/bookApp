@@ -7,6 +7,7 @@ ThemeData appThemeLight = ThemeData(
     color: Colors.white,
     iconTheme: IconThemeData(color: Colors.black.withOpacity(0.6)),
   ),
+  scaffoldBackgroundColor: Colors.black,
   toggleableActiveColor: Colors.redAccent.shade700,
   //app  background color
   backgroundColor: Colors.white,
@@ -57,4 +58,5 @@ ThemeData appThemeLight = ThemeData(
   bottomAppBarColor: Colors.grey.withOpacity(0.4),
   highlightColor: Colors.black,
   primaryColorDark: Colors.black.withOpacity(0.5),
+
 );

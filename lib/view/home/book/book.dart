@@ -19,7 +19,7 @@ class Book extends StatelessWidget {
               key: drawer.drawerKey.value,
               hasClone: drawer.removePageController.value,
               bodyBackgroundPeekSize: 40,
-              backgroundColor: Colors.teal.shade900,
+              backgroundColor: Theme.of(context).highlightColor.withOpacity(0.9),
               // pass drawer widget
               drawer: DrawerItem(),
               child: BookPage(),

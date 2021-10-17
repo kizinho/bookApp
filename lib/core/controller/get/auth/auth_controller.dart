@@ -7,6 +7,7 @@ class AuthController extends GetxController {
   RxBool isAuthenticated = false.obs;
   RxString username = ''.obs;
   RxString userId = ''.obs;
+  RxString email = ''.obs;
   RxString photo = ApiRoutes.avatar.obs;
 
   @override
@@ -20,6 +21,7 @@ class AuthController extends GetxController {
       isAuthenticated.value = true;
       username.value = user.displayName!;
       userId.value = user.uid;
+      email.value = user.email!;
       if(user.photoURL !=null) {
         photo.value = user.photoURL!;
       }

@@ -53,7 +53,7 @@ class DataBooks extends StatelessWidget {
                     style: GoogleFonts.ptSans(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).highlightColor),
+                        color: Theme.of(context).scaffoldBackgroundColor),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
