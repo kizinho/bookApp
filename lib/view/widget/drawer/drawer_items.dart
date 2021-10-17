@@ -29,14 +29,14 @@ class DrawerItem extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 14.0),
+                padding: const EdgeInsets.only(left: 8.0),
                 child: Column(
                   children: [
                     Text('${auth.username}',style: GoogleFonts.ptSans(
                         fontSize: 20,
                         color: Theme.of(context).canvasColor,fontWeight: FontWeight.bold)),
                     Text('${auth.email}',style: GoogleFonts.ptSans(
-                        fontSize: 10,
+                        fontSize: 7,
                         color: Theme.of(context).canvasColor)),
                   ],
                 ),
