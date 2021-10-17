@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 final drawer = Get.find<DrawerAppController>();
 final auth = Get.find<AuthController>();
-final user = Get.find<UserController>();
+final user = Get.put(UserController());
 headerNav(title, context) {
   return Padding(
     padding: const EdgeInsets.only(left: 20.0, right: 20),

@@ -17,7 +17,7 @@ class SearchPage extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0),
-        child: headerNav(books.searchTitle.value, context),
+        child: Obx(() =>headerNav(books.searchTitle.value, context)),
       ),
       body: RefreshIndicator(
         onRefresh: () => search.getSearchResult(
