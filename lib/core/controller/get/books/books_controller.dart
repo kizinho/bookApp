@@ -120,10 +120,6 @@ class BooksController extends GetxController {
     if (!iSelected) selectedFilter.add(i);
   }
 
-  loadBookTabs() {
-    print('this is what we use find tab at ${query.value}');
-  }
-
   getBookRelevance() async {
     try {
       BooksData result = await bookApi.getRelevanceBook();
@@ -164,7 +160,7 @@ class BooksController extends GetxController {
           if (itemDataFavorite!.isEmpty) {
             checkResult.value = true;
             return null;
-          }else{
+          } else {
             checkResult.value = false;
           }
           return itemDataFavorite;
@@ -181,11 +177,11 @@ class BooksController extends GetxController {
   getBookTabLoadMore() async {
     // print('.. starting from ${startIndex.value} and ends to $maxResults ');
     if (bookRefreshing.value) {
-      print('more data is still fetching');
+     // print('more data is still fetching');
       return null;
     }
     if (startIndex.value == 0) {
-      print('still on the first page');
+     // print('still on the first page');
       return null;
     }
     try {
@@ -199,7 +195,7 @@ class BooksController extends GetxController {
         startIndex.value = startIndex.value + 1;
         return latestResult;
       } else {
-        print('no pagination for my favourite');
+       // print('no pagination for my favourite');
         isFavourite.value = true;
         bookRefreshing.value = true;
         return null;

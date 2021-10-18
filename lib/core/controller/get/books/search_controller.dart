@@ -51,11 +51,11 @@ class SearchController extends GetxController {
 
   getLoadMore(orderBy, maxResults, value) async {
     if (bookRefreshing.value) {
-      print('more data is still fetching');
+     // print('more data is still fetching');
       return null;
     }
     if (startIndex.value == 0) {
-      print('still on the first page');
+     // print('still on the first page');
       return null;
     }
     try {
