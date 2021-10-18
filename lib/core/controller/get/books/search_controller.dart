@@ -38,6 +38,8 @@ class SearchController extends GetxController {
       }
       itemData!.value = result.items!;
       startIndex.value = startIndex.value + 1;
+      Get.find<BooksController>().selectedFilter.clear();
+      Get.find<BooksController>().searchController.clear();
       return result;
     } on NetworkException {
       snackBarWarning(

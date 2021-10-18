@@ -184,38 +184,62 @@ class SearchBar extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                GestureDetector(
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Text(
-                            'Search',
-                            style: Theme.of(context).textTheme.headline1,
-                          ),
-                        )),
-                  ),
-                  onTap: () {
-                    if (books.searchController.text.isNotEmpty) {
-                      Get.find<DrawerAppController>()
-                          .automaticallyImplyLeading
-                          .value = true;
-                      books.searchTitle.value = books.searchController.text;
-                      Get.to(() => SearchDetails());
-                      search.getSearchResult(
-                          books.searchValue.value.toLowerCase(),
-                          books.searchMaxResult.value,
-                          books.searchTitle.value);
-                    } else {
-                      Get.back();
-                      snackBarWarning('Search error!',
-                          'Keywords field can not be empty', false);
-                    }
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.red.shade700,
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Text(
+                                'clear',
+                                style: Theme.of(context).textTheme.headline1,
+                              ),
+                            )),
+                      ),
+                      onTap: () {
+                        books.selectedFilter.clear();
+                      },
+                    ),
+                    GestureDetector(
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Text(
+                                'Search',
+                                style: Theme.of(context).textTheme.headline1,
+                              ),
+                            )),
+                      ),
+                      onTap: () {
+                        if (books.searchController.text.isNotEmpty) {
+                          Get.find<DrawerAppController>()
+                              .automaticallyImplyLeading
+                              .value = true;
+                          books.searchTitle.value = books.searchController.text;
+                          Get.to(() => SearchDetails());
+                          search.getSearchResult(
+                              books.searchValue.value.toLowerCase(),
+                              books.searchMaxResult.value,
+                              books.searchTitle.value);
+                        } else {
+                          Get.back();
+                          snackBarWarning('Search error!',
+                              'Keywords field can not be empty', false);
+                        }
+                      },
+                    ),
+                  ],
                 ),
               ],
             )),

@@ -6,7 +6,7 @@ import 'package:booksfinder/view/widget/drawer/open_close_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-final search = Get.find<SearchController>();
+final search = Get.put(SearchController());
 final books = Get.find<BooksController>();
 
 class SearchPage extends StatelessWidget {

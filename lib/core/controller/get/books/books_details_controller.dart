@@ -124,7 +124,7 @@ class BooksDetailsController extends GetxController {
     FirebaseFirestore.instance
         .collection('favorites')
         .where('bookId', isEqualTo: bookId)
-        .where('userId', isEqualTo: Get.find<AuthController>().userId)
+        .where('userId', isEqualTo: Get.find<AuthController>().userId.value)
         .get()
         .then((snapshot) {
       snapshot.docs.first;
