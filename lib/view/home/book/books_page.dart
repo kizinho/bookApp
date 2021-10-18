@@ -19,7 +19,7 @@ class BookPage extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0),
-        child: headerNav('booksfinder', context),
+        child: headerNav('Books Finder', context),
       ),
       body: RefreshIndicator(
         onRefresh: () => books.bookRefresh(0),
