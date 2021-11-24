@@ -57,7 +57,7 @@ List<SliderModel> getSlides() {
 
   ////slider item 3
   sliderModel.setDesc(
-      "What are you still waiting for, process and feel amazed when browsing through our book store");
+      "What are you still waiting for, proceed and feel amazed when browsing through our book store");
   sliderModel.setTitle("Let get started ");
   sliderModel.setImageAssetPath("assets/images/onboarding/screen3.png");
   slides.add(sliderModel);

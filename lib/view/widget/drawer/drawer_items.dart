@@ -44,62 +44,38 @@ class DrawerItem extends StatelessWidget {
             ],
           ),
           SizedBox(height: 35),
-          Padding (
-            padding: const EdgeInsets.only(
-                left: 8.0),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  WidgetSpan(
-                    child: Icon(
-                      Icons.support_agent,
-                      color:
-                      Theme.of(context).canvasColor,
-                      size: 25,
-                    ),
-                  ),
-                  WidgetSpan(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8.0, bottom: 3),
-                      child: Text('Support',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+
           SizedBox(height: 12,),
           Divider(color: Theme.of(context).canvasColor,thickness: 0.3,),
           Padding (
             padding: const EdgeInsets.only(
                 left: 8.0),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  WidgetSpan(
-                    child: Icon(
-                      Icons.share,
-                      color:
-                      Theme.of(context).canvasColor,
-                      size: 25,
+            child: GestureDetector(
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    WidgetSpan(
+                      child: Icon(
+                        Icons.share,
+                        color:
+                        Theme.of(context).canvasColor,
+                        size: 25,
+                      ),
                     ),
-                  ),
-                  WidgetSpan(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8.0, bottom: 3),
-                      child: Text('Share',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline5),
+                    WidgetSpan(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, bottom: 3),
+                        child: Text('Share',
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline5),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+             onTap: () => auth.shareAppUrl(),
             ),
           ),
           SizedBox(height: 12,),
